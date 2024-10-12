@@ -40,21 +40,33 @@
             height: auto;
             border-radius: 5px;
         }
-        #productos {
+        #productos, #productos-sin-alcohol {
             display: flex;
             flex-direction: column;
             gap: 20px;
+        }
+        #productos-sin-alcohol {
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: wrap;
         }
         footer {
             text-align: center;
             margin-top: 20px;
             color: #777;
         }
+        #qr-section img {
+            max-width: 150px; /* Ajusta el tamaño del QR aquí */
+            height: auto;
+        }
         @media (min-width: 600px) {
             #productos {
                 flex-direction: row;
                 flex-wrap: wrap;
                 justify-content: space-between;
+            }
+            #productos-sin-alcohol {
+                justify-content: space-around;
             }
         }
     </style>
@@ -71,10 +83,10 @@
         <h3>Con Alcohol</h3>
         <div class="producto">
             <img src="ponche-dulce-de-leche.jpg.jpeg" alt="Ponche Dulce de Leche">
-            <h4>Ponche Dulce de Leche (24 onza)</h4>
+            <h4>Ponche Dulce de Leche (700 ML)</h4>
             <p>Un exquisito ponche con el sabor cremoso del dulce de leche, ideal para disfrutar en cualquier ocasión.</p>
             <p><strong>Precio:</strong> $900.00</p>
-            <button onclick="realizarPedido('Ponche Dulce de Leche (24 onza)', 900)">Hacer Pedido</button>
+            <button onclick="realizarPedido('Ponche Dulce de Leche (700 ML)', 900)">Hacer Pedido</button>
         </div>
 
         <div class="producto">
@@ -84,7 +96,6 @@
             <p><strong>Precio:</strong> $200.00</p>
             <button onclick="realizarPedido('Ponche Dulce de Leche (4 oz)', 200)">Hacer Pedido</button>
         </div>
-
     </section>
 
     <section id="productos-sin-alcohol">
@@ -99,7 +110,7 @@
 
         <div class="producto">
             <img src="ponche-dulce-de-leche.jpg.jpeg" alt="Ponche Sin Alcohol Dulce de Leche 24 onzas">
-            <h4>Ponche Sin Alcohol de Dulce de Leche (24 oz)</h4>
+            <h4>Ponche Sin Alcohol de Dulce de Leche (700 ML)</h4>
             <p>Una opción más grande para disfrutar de nuestro delicioso ponche sin alcohol.</p>
             <p><strong>Precio:</strong> $800.00</p>
             <button onclick="realizarPedido('Ponche Sin Alcohol de Dulce de Leche (24 oz)', 800)">Hacer Pedido</button>
@@ -153,6 +164,3 @@
     </script>
 </body>
 </html>
-
-       
-        
