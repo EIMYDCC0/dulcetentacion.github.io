@@ -6,6 +6,58 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ponches Artesanales - Dulce Tentación</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos para asegurar una buena visualización */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        h2 {
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        .producto {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .producto img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        #productos {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+        }
+        @media (min-width: 600px) {
+            #productos {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -33,9 +85,12 @@
             <button onclick="realizarPedido('Ponche Dulce de Leche (4 oz)', 200)">Hacer Pedido</button>
         </div>
 
+    </section>
+
+    <section id="productos-sin-alcohol">
         <h3>Sin Alcohol</h3>
         <div class="producto">
-            <img src="ponche-sin-alcohol-4oz.jpg.jpeg" alt="Ponche Sin Alcohol Dulce de Leche 4 onzas">
+            <img src="ponche-dulce-de-leche.jpg.jpeg" alt="Ponche Sin Alcohol Dulce de Leche 4 onzas">
             <h4>Ponche Sin Alcohol de Dulce de Leche (4 oz)</h4>
             <p>Disfruta de la dulzura del dulce de leche en esta presentación sin alcohol.</p>
             <p><strong>Precio:</strong> $150.00</p>
@@ -43,13 +98,12 @@
         </div>
 
         <div class="producto">
-            <img src="ponche-sin-alcohol-24oz.jpg.jpeg" alt="Ponche Sin Alcohol Dulce de Leche 24 onzas">
+            <img src="ponche-dulce-de-leche.jpg.jpeg" alt="Ponche Sin Alcohol Dulce de Leche 24 onzas">
             <h4>Ponche Sin Alcohol de Dulce de Leche (24 oz)</h4>
             <p>Una opción más grande para disfrutar de nuestro delicioso ponche sin alcohol.</p>
             <p><strong>Precio:</strong> $800.00</p>
             <button onclick="realizarPedido('Ponche Sin Alcohol de Dulce de Leche (24 oz)', 800)">Hacer Pedido</button>
         </div>
-
     </section>
 
     <section id="pedido">
@@ -77,7 +131,7 @@
     <section id="qr-section">
         <h2>Acceso Directo con Código QR</h2>
         <p>Escanea este código QR para acceder a nuestra tienda desde tu dispositivo móvil.</p>
-        <img src="qr-frame.png" alt="Código QR para la tienda de ponches">
+        <img src="frame.png" alt="Código QR para la tienda de ponches">
     </section>
 
     <footer>
@@ -99,3 +153,6 @@
     </script>
 </body>
 </html>
+
+       
+        
