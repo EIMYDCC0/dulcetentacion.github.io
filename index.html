@@ -13,6 +13,9 @@
             margin: 0;
             padding: 20px;
             background-color: #f9f9f9;
+            background-image: url('background-navidad.jpg'); /* Fondo navideño */
+            background-size: cover;
+            background-repeat: no-repeat;
         }
         header {
             text-align: center;
@@ -21,6 +24,14 @@
             padding: 20px;
             border-radius: 5px;
             color: white;
+            position: relative; /* Para posicionar elementos hijos */
+        }
+        header img {
+            position: absolute;
+            top: 10px; /* Ajusta la posición */
+            right: 10px; /* Ajusta la posición */
+            width: 50px; /* Tamaño del icono navideño */
+            height: auto;
         }
         h1 {
             color: #fff;
@@ -38,6 +49,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para efecto 3D */
         }
         .producto img {
             max-width: 100%;
@@ -79,6 +91,7 @@
     <header>
         <h1>Ponches Artesanales - Dulce Tentación</h1>
         <p>Disfruta del mejor ponche artesanal, elaborado con ingredientes de calidad y un toque especial de dulce de leche.</p>
+        <img src="tree-icon.png" alt="Ícono de árbol de Navidad"> <!-- Icono navideño -->
     </header>
 
     <section id="productos">
@@ -168,3 +181,5 @@
     </script>
 </body>
 </html>
+
+
