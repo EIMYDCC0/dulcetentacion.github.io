@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ponches Artesanales - Dulce Tentación</title>
+    <title>Ponches Artesanales - Dulce Tradicion</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         /* Estilos para asegurar una buena visualización */
@@ -77,6 +77,10 @@
         #qr-section img {
             max-width: 150px; /* Ajusta el tamaño del QR aquí */
             height: auto;
+        }
+        /* Ocultar formulario al cargar la página */
+        #pedido {
+            display: none;
         }
         @media (min-width: 600px) {
             #productos {
@@ -173,6 +177,7 @@
         function realizarPedido(producto, precio) {
             document.getElementById('producto').value = producto;
             document.getElementById('precio').value = "$" + precio;
+            document.getElementById('pedido').style.display = 'block'; // Mostrar el formulario
             window.scrollTo(0, document.getElementById('pedido').offsetTop);
         }
 
@@ -180,8 +185,8 @@
             event.preventDefault();
             alert('¡Gracias por tu pedido! Nos pondremos en contacto contigo para confirmar la entrega.');
             document.getElementById('form-pedido').reset();
+            document.getElementById('pedido').style.display = 'none'; // Ocultar el formulario nuevamente
         }
     </script>
 </body>
 </html>
-
