@@ -59,7 +59,8 @@
         }
         #productos {
             display: flex;
-            justify-content: space-around;
+            flex-direction: column; /* Cambiar a columna para que los productos y el botón estén uno debajo del otro */
+            align-items: center;
             gap: 20px;
         }
         #formulario-pedido {
@@ -114,8 +115,8 @@
 </head>
 <body>
     <header>
-        <h1>Ponches Artesanales - Dulce Tentación</h1>
-        <p>Disfruta del mejor ponche artesanal, elaborado con ingredientes de calidad y un toque especial de dulce de leche.</p>
+        <h1>Ponches Artesanales - Dulce Tradicion</h1>
+        <p>Disfruta del mejor ponche tradicional, elaborado con ingredientes de calidad y un toque especial de dulce de leche.</p>
         <img src="tree-icon.png" alt="Ícono de árbol de Navidad">
     </header>
 
@@ -206,3 +207,4 @@
     </script>
 </body>
 </html>
+
