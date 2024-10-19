@@ -215,11 +215,11 @@
     <footer>
         <div class="contacto">
             <a href="mailto:tuemail@example.com">
-                <img src="whatsapp-icon.png" alt="WhatsApp"> Contacto
+                <img src="whatsapp-icono.png" alt="WhatsApp"> Contacto
             </a>
         </div>
         <div class="info-contacto">
-            <p>Correo Electrónico: <a href="mailto:tuemail@example.com">tuemail@example.com</a></p>
+            <p>Correo Electrónico: <a href="mailto:atencionalcliente@dulcetradicion.com">atencionalcliente@dulcetradicion.com</a></p>
             <p>Teléfono: <a href="tel:+11234567890">+1 (123) 456-7890</a></p>
         </div>
         <p>&copy; 2024 Dulce Tradición. Todos los derechos reservados.</p>
@@ -264,7 +264,7 @@
         function confirmarPedido(event) {
             event.preventDefault();
             const nombre = document.getElementById('nombre').value;
-            const mensaje = `Gracias, ${nombre}. Su pedido ha sido confirmado.`;
+            const mensaje = `Gracias, ${nombre}. Su pedido ha sido confirmado, un representante se estara comunicando con usted para los detalles de su entrega. Gracias por su compra!`;
             document.getElementById('mensaje-confirmacion').innerText = mensaje;
             document.getElementById('formulario-pedido').reset();
             document.getElementById('formulario-pedido').style.display = 'none';
