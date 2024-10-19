@@ -100,6 +100,15 @@
             height: 24px;
             margin-right: 10px;
         }
+        #btn-hacer-pedido {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #8B0000; /* Color rojo vino */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -130,7 +139,8 @@
             <label for="cantidad2">Cantidad:</label>
             <input type="number" id="cantidad2" name="cantidad2" value="1" min="1">
         </div>
-        <button onclick="realizarPedido()">Hacer Pedido</button>
+
+        <button id="btn-hacer-pedido" onclick="realizarPedido()">Hacer Pedido</button>
     </section>
 
     <!-- Formulario para completar el pedido -->
@@ -165,21 +175,16 @@
         function realizarPedido() {
             const cantidad1 = document.getElementById('cantidad1').value;
             const cantidad2 = document.getElementById('cantidad2').value;
-
-            const precio1 = 900; // Precio del ponche de 700 ML
-            const precio2 = 200; // Precio del ponche de 4 oz
-
+            const precio1 = 900; // Precio del primer producto
+            const precio2 = 200; // Precio del segundo producto
+            
             const total1 = cantidad1 * precio1;
             const total2 = cantidad2 * precio2;
-
-            const totalGeneral = total1 + total2;
-
-            // Mostrar el detalle del pedido
-            const detallePedido = 
-                `Has seleccionado ${cantidad1} unidades de Ponche Dulce de Leche (700 ML) por un total de $${total1.toFixed(2)}\n` +
-                `Y ${cantidad2} unidades de Ponche Dulce de Leche (4 oz) por un total de $${total2.toFixed(2)}\n` +
-                `Total a pagar: $${totalGeneral.toFixed(2)}`;
+            const total = total1 + total2;
             
+            const detallePedido = `Has seleccionado ${cantidad1} unidades de Ponche Dulce de Leche (700 ML) por un total de $${total1.toFixed(2)} y ${cantidad2} unidades de Ponche Dulce de Leche (4 oz) por un total de $${total2.toFixed(2)}. Total a pagar: $${total.toFixed(2)}.`;
+            
+            // Mostrar el detalle del pedido
             document.getElementById('detalle-pedido').innerText = detallePedido;
             
             // Mostrar el formulario de pedido
