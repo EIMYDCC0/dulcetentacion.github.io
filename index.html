@@ -71,6 +71,10 @@
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+        #datos-tarjeta {
+            display: none;
+            margin-top: 10px;
+        }
         footer {
             text-align: center;
             margin-top: 20px;
@@ -173,6 +177,24 @@
             <input type="tel" id="telefono" name="telefono" required><br><br>
             <label for="email">Correo Electrónico:</label><br>
             <input type="email" id="email" name="email" required><br><br>
+
+            <label for="metodo-pago">Método de Pago:</label><br>
+            <select id="metodo-pago" name="metodo-pago" onchange="mostrarOpcionesPago()" required>
+                <option value="">Seleccione una opción</option>
+                <option value="tarjeta">Tarjeta</option>
+                <option value="efectivo">Efectivo</option>
+                <option value="transferencia">Transferencia</option>
+            </select><br><br>
+
+            <div id="datos-tarjeta">
+                <label for="numero-tarjeta">Número de Tarjeta:</label><br>
+                <input type="text" id="numero-tarjeta" name="numero-tarjeta" placeholder="1234 5678 9012 3456"><br><br>
+                <label for="fecha-expiracion">Fecha de Expiración:</label><br>
+                <input type="month" id="fecha-expiracion" name="fecha-expiracion"><br><br>
+                <label for="cvv">CVV:</label><br>
+                <input type="text" id="cvv" name="cvv" placeholder="123"><br><br>
+            </div>
+
             <button type="submit">Confirmar Pedido</button>
         </form>
         <p id="mensaje-confirmacion" style="display: none; color: green; font-weight: bold;"></p>
@@ -226,6 +248,17 @@
             }
         }
 
+        function mostrarOpcionesPago() {
+            const metodoPago = document.getElementById('metodo-pago').value;
+            const datosTarjeta = document.getElementById('datos-tarjeta');
+
+            if (metodoPago === 'tarjeta') {
+                datosTarjeta.style.display = 'block';
+            } else {
+                datosTarjeta.style.display = 'none';
+            }
+        }
+
         function confirmarPedido(event) {
             event.preventDefault();
             const mensajeConfirmacion = "Gracias por su compra. Un representante se estará comunicando con usted dentro de las próximas 24 horas para los detalles de entrega.";
@@ -235,5 +268,3 @@
     </script>
 </body>
 </html>
-
-
