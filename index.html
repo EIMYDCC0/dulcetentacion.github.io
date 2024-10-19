@@ -150,7 +150,7 @@
             <p>Un exquisito ponche con el sabor cremoso del dulce de leche, ideal para disfrutar en cualquier ocasión.</p>
             <p><strong>Precio:</strong> $900.00</p>
             <label for="cantidad1">Cantidad:</label>
-            <input type="number" id="cantidad1" name="cantidad1" value="0" min="0" onchange="calcularPrecioTotal()">
+            <input type="number" id="cantidad1" name="cantidad1" value="0" min="0">
         </div>
 
         <div class="producto">
@@ -159,11 +159,10 @@
             <p>Perfecto para una pequeña degustación del delicioso sabor del dulce de leche.</p>
             <p><strong>Precio:</strong> $200.00</p>
             <label for="cantidad2">Cantidad:</label>
-            <input type="number" id="cantidad2" name="cantidad2" value="0" min="0" onchange="calcularPrecioTotal()">
+            <input type="number" id="cantidad2" name="cantidad2" value="0" min="0">
         </div>
 
         <button id="btn-hacer-pedido" onclick="realizarPedido()">Hacer Pedido</button>
-        <p id="precio-total" style="font-weight: bold; display: none;">Total: $0.00</p>
     </section>
 
     <section id="formulario-pedido">
@@ -209,50 +208,49 @@
 
             <button type="submit">Confirmar Pedido</button>
         </form>
+        <p id="mensaje-confirmacion" style="display:none;"></p>
+    </section>
+
+    <section class="info-contacto">
+        <p>¿Tienes dudas o deseas hacer tu pedido vía WhatsApp? ¡Contáctanos!</p>
+        <div class="contacto">
+            <a href="https://wa.me/80987654321" target="_blank">
+                <img src="whatsapp-icon.png" alt="WhatsApp">
+                Escríbenos por WhatsApp
+            </a>
+        </div>
     </section>
 
     <footer>
-        <p>Contáctanos para más información.</p>
-        <div class="contacto">
-            <a href="https://wa.me/1234567890" target="_blank">
-                <img src="whatsapp-icon.png" alt="WhatsApp"> Envíanos un WhatsApp
-            </a>
-        </div>
+        <p>Ponches - Dulce Tradición © 2024</p>
     </footer>
 
     <script>
-        function calcularPrecioTotal() {
-            const cantidad1 = document.getElementById('cantidad1').value;
-            const cantidad2 = document.getElementById('cantidad2').value;
-            const precio1 = 900;
-            const precio2 = 200;
-            const total = (cantidad1 * precio1) + (cantidad2 * precio2);
-            const totalDisplay = document.getElementById('precio-total');
-            totalDisplay.textContent = 'Total: $' + total.toFixed(2);
-            totalDisplay.style.display = total > 0 ? 'block' : 'none'; // Muestra el total solo si es mayor que cero
-        }
-
         function realizarPedido() {
-            const cantidad1 = document.getElementById('cantidad1').value;
-            const cantidad2 = document.getElementById('cantidad2').value;
-            const total = (cantidad1 * 900) + (cantidad2 * 200);
-            const detallePedido = document.getElementById('detalle-pedido');
-            detallePedido.textContent = `Pedido realizado: ${cantidad1} Ponches Dulce de Leche (700 ML) y ${cantidad2} Ponches Dulce de Leche (4 oz). Total: $${total.toFixed(2)}`;
-            document.getElementById('formulario-pedido').style.display = 'block';
+            document.getElementById("formulario-pedido").style.display = "block";
+            var cantidad1 = document.getElementById("cantidad1").value;
+            var cantidad2 = document.getElementById("cantidad2").value;
+            var detalle = "Pedido: ";
+            if (cantidad1 > 0) detalle += cantidad1 + " Ponche Dulce de Leche (700 ML) ";
+            if (cantidad2 > 0) detalle += cantidad2 + " Ponche Dulce de Leche (4 oz) ";
+            document.getElementById("detalle-pedido").innerText = detalle;
         }
 
         function mostrarOpcionesPago() {
-            const metodoPago = document.getElementById('metodo-pago').value;
-            document.getElementById('datos-tarjeta').style.display = metodoPago === 'tarjeta' ? 'block' : 'none';
-            document.getElementById('datos-transferencia').style.display = metodoPago === 'transferencia' ? 'block' : 'none';
+            var metodoPago = document.getElementById("metodo-pago").value;
+            document.getElementById("datos-tarjeta").style.display = "none";
+            document.getElementById("datos-transferencia").style.display = "none";
+            if (metodoPago === "tarjeta") {
+                document.getElementById("datos-tarjeta").style.display = "block";
+            } else if (metodoPago === "transferencia") {
+                document.getElementById("datos-transferencia").style.display = "block";
+            }
         }
 
         function confirmarPedido(event) {
-            event.preventDefault(); // Evita el envío del formulario
-            alert('Pedido confirmado. ¡Gracias por tu compra!');
-            document.getElementById('formulario-pedido').reset();
-            document.getElementById('formulario-pedido').style.display = 'none';
-            document.getElementById('precio-total').style.display = 'none'; // Ocultar el total después de confirmar
+            event.preventDefault();
+            document.getElementById("mensaje-confirmacion").style.display = "block";
+            document.getElementById("mensaje-confirmacion").innerText = "¡Pedido confirmado! Gracias por tu compra.";
         }
     </script>
 </body>
