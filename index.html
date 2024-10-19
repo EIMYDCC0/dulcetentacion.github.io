@@ -111,6 +111,23 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        .info-contacto {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: center;
+        }
+        .info-contacto p {
+            margin: 0 0 10px;
+            color: #555;
+        }
+        .info-contacto a {
+            color: #8B0000; /* Rojo vino */
+            text-decoration: none;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -163,11 +180,16 @@
         <p id="mensaje-confirmacion" style="display: none; color: green; font-weight: bold;"></p>
     </section>
 
-    <section class="contacto">
-        <a href="https://wa.me/1234567890" target="_blank">
-            <img src="whatsapp-icon.png" alt="WhatsApp">
-            Contáctanos por WhatsApp
-        </a>
+    <section class="info-contacto">
+        <h2>Para más información o denuncias</h2>
+        <p>Estos son nuestros canales de contacto:</p>
+        <div class="contacto">
+            <a href="https://wa.me/1234567890" target="_blank">
+                <img src="whatsapp-icon.png" alt="WhatsApp">
+                Contáctanos por WhatsApp
+            </a>
+        </div>
+        <p>Correo electrónico: <a href="mailto:servi@dulcetradicion.gob.do">servi@dulcetradicion.gob.do</a></p>
     </section>
 
     <footer>
@@ -188,23 +210,5 @@
             const detallePedido = `Has seleccionado ${cantidad1} unidades de Ponche Dulce de Leche (700 ML) por un total de $${total1.toFixed(2)} y ${cantidad2} unidades de Ponche Dulce de Leche (4 oz) por un total de $${total2.toFixed(2)}. Total a pagar: $${total.toFixed(2)}.`;
             
             // Mostrar el detalle del pedido
-            document.getElementById('detalle-pedido').innerText = detallePedido;
-            
-            // Mostrar el formulario de pedido
-            document.getElementById('formulario-pedido').style.display = 'block';
-        }
-
-        function confirmarPedido(event) {
-            event.preventDefault();
-            
-            // Mostrar el mensaje de confirmación
-            const mensajeConfirmacion = "Gracias por su compra. Un representante se estará comunicando con usted dentro de las próximas 24 horas para los detalles de entrega.";
-            document.getElementById('mensaje-confirmacion').innerText = mensajeConfirmacion;
-            document.getElementById('mensaje-confirmacion').style.display = 'block';
-            
-            // Opcional: Aquí puedes agregar más lógica, como enviar el pedido a un servidor
-        }
-    </script>
-</body>
-</html>
+            document.getElementById('detalle-pedido').inner
 
