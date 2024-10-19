@@ -71,7 +71,7 @@
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        #datos-tarjeta, #datos-transferencia, #numero-transaccion {
+        #datos-tarjeta, #datos-transferencia {
             display: none;
             margin-top: 10px;
         }
@@ -203,12 +203,12 @@
                 <p><strong>Cédula:</strong> 402-1322456-7</p>
                 <p>Una vez realizada la transacción, por favor ingrese el número de transacción a continuación:</p>
                 <label for="numero-transaccion">Número de Transacción:</label><br>
-                <input type="text" id="numero-transaccion" name="numero-transaccion"><br><br>
+                <input type="text" id="numero-transaccion" name="numero-transaccion" required><br><br> <!-- Campo habilitado -->
             </div>
 
             <button type="submit">Confirmar Pedido</button>
         </form>
-        <p id="mensaje-confirmacion" style="display: none; color: green; font-weight: bold;"></p>
+        <p id="mensaje-confirmacion" style="display:none;"></p>
     </section>
 
     <section class="info-contacto">
@@ -255,5 +255,4 @@
     </script>
 </body>
 </html>
-
 
