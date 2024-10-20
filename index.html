@@ -186,24 +186,39 @@
         </div>
         <p>&copy; 2024 Dulce Tradición. Todos los derechos reservados.</p>
     </footer>
+    
+   <script>
+    function realizarPedido() {
+        const cantidad1 = parseInt(document.getElementById('cantidad1').value) || 0;
+        const cantidad2 = parseInt(document.getElementById('cantidad2').value) || 0;
 
-    <script>
-        function realizarPedido() {
-            const cantidad1 = parseInt(document.getElementById('cantidad1').value) || 0;
-            const cantidad2 = parseInt(document.getElementById('cantidad2').value) || 0;
+        let productosSeleccionados = [];
 
-            if (cantidad1 > 0 || cantidad2 > 0) {
-                const producto = cantidad1 > 0 ? 'Ponche Dulce de Leche (700 ML)' : 'Ponche Dulce de Leche (4 oz)';
-                const cantidad = cantidad1 > 0 ? cantidad1 : cantidad2;
-                const precio = cantidad1 > 0 ? 900 : 200;
-
-                // Redirigir al formulario de pedido con los datos en la URL
-                window.location.href = `formulario-pedido2.html?producto=${encodeURIComponent(producto)}&cantidad=${cantidad}&precio=${precio}`;
-            } else {
-                alert('Por favor, seleccione al menos una cantidad antes de realizar el pedido.');
-            }
+        if (cantidad1 > 0) {
+            productosSeleccionados.push({
+                producto: 'Ponche Dulce de Leche (700 ML)',
+                cantidad: cantidad1,
+                precio: 900
+            });
         }
-    </script>
+        if (cantidad2 > 0) {
+            productosSeleccionados.push({
+                producto: 'Ponche Dulce de Leche (4 oz)',
+                cantidad: cantidad2,
+                precio: 200
+            });
+        }
+
+        if (productosSeleccionados.length > 0) {
+            // Convertir los productos seleccionados a una cadena JSON para enviarlos
+            const productosJson = encodeURIComponent(JSON.stringify(productosSeleccionados));
+            window.location.href = `formulario-pedido2.html?productos=${productosJson}`;
+        } else {
+            alert('Por favor, seleccione al menos una cantidad antes de realizar el pedido.');
+        }
+    }
+</script>
+
 </body>
 </html>
 
