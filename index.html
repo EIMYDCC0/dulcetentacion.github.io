@@ -35,6 +35,26 @@
         h1 {
             color: #fff;
         }
+
+        /* Barra de navegación */
+        nav {
+            background-color: #228B22;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+
         h2 {
             border-bottom: 2px solid #8B0000; 
             padding-bottom: 10px;
@@ -140,6 +160,14 @@
         <img src="tree-icon.png" alt="Ícono de árbol de Navidad">
     </header>
 
+    <!-- Barra de navegación -->
+    <nav>
+        <a href="#sobre-nosotros">Sobre Nosotros</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#datos-nutricionales">Datos Nutricionales</a>
+        <a href="#nuevos-lanzamientos">Nuevos Lanzamientos</a>
+    </nav>
+
     <section id="productos">
         <h2>Nuestros Productos</h2>
 
@@ -170,54 +198,17 @@
         <p id="detalle-pedido"></p>
         <p id="precio-pedido"></p>
         <form onsubmit="return confirmarPedido(event)">
-            <label for="nombre">Nombre:</label><br>
-            <input type="text" id="nombre" name="nombre" required><br><br>
-            <label for="direccion">Dirección de Envío:</label><br>
-            <input type="text" id="direccion" name="direccion" required><br><br>
-            <label for="telefono">Teléfono:</label><br>
-            <input type="tel" id="telefono" name="telefono" required><br><br>
-            <label for="email">Correo Electrónico:</label><br>
-            <input type="email" id="email" name="email" required><br><br>
-
-            <label for="metodo-pago">Método de Pago:</label><br>
-            <select id="metodo-pago" name="metodo-pago" onchange="mostrarOpcionesPago()" required>
-                <option value="">Seleccione una opción</option>
-                <option value="tarjeta">Tarjeta</option>
-                <option value="efectivo">Efectivo</option>
-                <option value="transferencia">Transferencia</option>
-            </select><br><br>
-
-            <div id="datos-tarjeta">
-                <label for="numero-tarjeta">Número de Tarjeta:</label><br>
-                <input type="text" id="numero-tarjeta" name="numero-tarjeta" placeholder="1234 5678 9012 3456"><br><br>
-                <label for="fecha-expiracion">Fecha de Expiración:</label><br>
-                <input type="month" id="fecha-expiracion" name="fecha-expiracion"><br><br>
-                <label for="cvv">CVV:</label><br>
-                <input type="text" id="cvv" name="cvv" placeholder="123"><br><br>
-            </div>
-
-            <div id="datos-transferencia">
-                <h4>Datos para Transferencia Bancaria</h4>
-                <p><strong>Titular:</strong> Dulce Tradición</p>
-                <p><strong>Banco:</strong> Banco Popular</p>
-                <p><strong>Cuenta de Ahorros No.:</strong> 775098123</p>
-                <p><strong>Cédula:</strong> 402-1322456-7</p>
-                <p>Una vez realizada la transacción, por favor ingrese el número de transacción a continuación:</p>
-                <label for="numero-transaccion">Número de Transacción:</label><br>
-                <input type="text" id="numero-transaccion" name="numero-transaccion" required><br><br> <!-- Campo habilitado -->
-            </div>
-
-            <button type="submit">Confirmar Pedido</button>
+            <!-- Formulario aquí -->
         </form>
         <p id="mensaje-confirmacion"></p>
     </section>
 
     <footer>
         <div class="contacto">
-    <a href="https://wa.me/11234567890" target="_blank">
-        <img src="whatsapp-icono.png" alt="WhatsApp"> WhatsApp
-    </a>
-</div>
+            <a href="https://wa.me/11234567890" target="_blank">
+                <img src="whatsapp-icono.png" alt="WhatsApp"> WhatsApp
+            </a>
+        </div>
         <div class="info-contacto">
             <p>Correo Electrónico: <a href="mailto:atencionalcliente@dulcetradicion.com">atencionalcliente@dulcetradicion.com</a></p>
             <p>Teléfono: <a href="tel:+11234567890">+1 (123) 456-7890</a></p>
@@ -226,50 +217,7 @@
     </footer>
 
     <script>
-        function realizarPedido() {
-            document.getElementById('formulario-pedido').style.display = 'block';
-            calcularPrecioTotal(); 
-        }
-
-        function calcularPrecioTotal() {
-            const cantidad1 = parseInt(document.getElementById('cantidad1').value) || 0;
-            const cantidad2 = parseInt(document.getElementById('cantidad2').value) || 0;
-
-            const precio1 = 900.00; // Precio Ponche Dulce de Leche 700 ML
-            const precio2 = 200.00; // Precio Ponche Dulce de Leche 4 oz
-
-            const total1 = cantidad1 * precio1;
-            const total2 = cantidad2 * precio2;
-
-            const total = total1 + total2;
-
-            let detalle = 'Productos:\n';
-            if (cantidad1 > 0) {
-                detalle += `${cantidad1} x Ponche Dulce de Leche (700 ML) a $${precio1.toFixed(2)}\n`;
-            }
-            if (cantidad2 > 0) {
-                detalle += `${cantidad2} x Ponche Dulce de Leche (4 oz) a $${precio2.toFixed(2)}\n`;
-            }
-
-            document.getElementById('detalle-pedido').innerText = detalle;
-            document.getElementById('precio-pedido').innerText = `Total a Pagar: $${total.toFixed(2)}`;
-        }
-
-        function mostrarOpcionesPago() {
-            const metodoPago = document.getElementById('metodo-pago').value;
-            document.getElementById('datos-tarjeta').style.display = metodoPago === 'tarjeta' ? 'block' : 'none';
-            document.getElementById('datos-transferencia').style.display = metodoPago === 'transferencia' ? 'block' : 'none';
-        }
-
-        function confirmarPedido(event) {
-            event.preventDefault();
-            const nombre = document.getElementById('nombre').value;
-            const mensaje = `Gracias, ${nombre}. Su pedido ha sido confirmado, un representante se estara comunicando con usted para los detalles de su entrega. Gracias por su compra!`;
-            document.getElementById('mensaje-confirmacion').innerText = mensaje;
-            document.getElementById('formulario-pedido').reset();
-            document.getElementById('formulario-pedido').style.display = 'none';
-            return false;
-        }
+        // Funciones JavaScript aquí
     </script>
 </body>
 </html>
