@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sobre Nosotros - Dulce Tradición</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: #8B0000;
+            padding: 20px;
+            border-radius: 5px;
+            color: white;
+        }
+        h1 {
+            color: #fff;
+        }
+        .contenido {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+            background-color: #8B0000;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sobre Nosotros</h1>
+    </header>
+
+    <section class="contenido">
+        <p>En <strong>Dulce Tradición</strong>, nos dedicamos a mantener viva la tradición de los ponches artesanales, combinando el sabor auténtico del dulce de leche con nuestra pasión por crear una experiencia única. Nuestros ponches están hechos con ingredientes de la más alta calidad y siguiendo recetas familiares que se han perfeccionado a lo largo de los años.</p>
+        <p>Sabemos que las mejores tradiciones se disfrutan en los momentos más especiales del año. Por eso, nuestros ponches se venden exclusivamente en la temporada navideña, brindando ese toque dulce y acogedor que completa tus celebraciones en diciembre.</p>
+        <p>Queremos que cada botella que compres no solo sea un delicioso regalo para tu paladar, sino una manera de compartir momentos memorables con tus seres queridos. ¡Gracias por elegir ser parte de nuestra tradición!</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Dulce Tradición. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
