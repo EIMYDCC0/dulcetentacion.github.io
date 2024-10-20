@@ -8,24 +8,6 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            <body>
-    <!-- Barra de navegación -->
-    <nav style="background-color: #8B0000; padding: 10px; text-align: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-        <a href="#sobre-nosotros" style="color: white; text-decoration: none; margin: 0 15px;">Sobre Nosotros</a>
-        <a href="#nuevos-productos" style="color: white; text-decoration: none; margin: 0 15px;">Nuevos Productos</a>
-        <a href="#ofertas" style="color: white; text-decoration: none; margin: 0 15px;">Ofertas</a>
-        <a href="#datos-nutricionales" style="color: white; text-decoration: none; margin: 0 15px;">Datos Nutricionales</a>
-    </nav>
-    
-    <!-- Contenido de la página existente -->
-    <header>
-        <h1>Ponches - Dulce Tradición</h1>
-        <p>Disfruta del mejor ponche tradicional, elaborado con ingredientes de calidad y un toque especial de dulce de leche.</p>
-        <img src="tree-icon.png" alt="Ícono de árbol de Navidad">
-    </header>
-    <!-- Resto del código de tu página -->
-</body>
-
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
@@ -56,6 +38,17 @@
         h2 {
             border-bottom: 2px solid #8B0000; 
             padding-bottom: 10px;
+        }
+        nav {
+            background-color: #8B0000;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
         }
         .producto {
             border: 1px solid #ddd;
@@ -152,6 +145,14 @@
     </style>
 </head>
 <body>
+    <!-- Barra de navegación -->
+    <nav>
+        <a href="#sobre-nosotros">Sobre Nosotros</a>
+        <a href="#nuevos-productos">Nuevos Productos</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#datos-nutricionales">Datos Nutricionales</a>
+    </nav>
+    
     <header>
         <h1>Ponches - Dulce Tradición</h1>
         <p>Disfruta del mejor ponche tradicional, elaborado con ingredientes de calidad y un toque especial de dulce de leche.</p>
@@ -216,78 +217,18 @@
 
             <div id="datos-transferencia">
                 <h4>Datos para Transferencia Bancaria</h4>
-                <p><strong>Titular:</strong> Dulce Tradición</p>
-                <p><strong>Banco:</strong> Banco Popular</p>
-                <p><strong>Cuenta de Ahorros No.:</strong> 775098123</p>
-                <p><strong>Cédula:</strong> 402-1322456-7</p>
-                <p>Una vez realizada la transacción, por favor ingrese el número de transacción a continuación:</p>
-                <label for="numero-transaccion">Número de Transacción:</label><br>
-                <input type="text" id="numero-transaccion" name="numero-transaccion" required><br><br> <!-- Campo habilitado -->
+                <p><strong>Titular:</strong> Nombre del Titular</p>
+                <p><strong>Banco:</strong> Nombre del Banco</p>
+                <p><strong>Cuenta:</strong> Número de Cuenta</p>
+                <p><strong>CLABE:</strong> Clabe Interbancaria</p>
             </div>
 
             <button type="submit">Confirmar Pedido</button>
         </form>
-        <p id="mensaje-confirmacion"></p>
     </section>
 
     <footer>
-        <div class="contacto">
-    <a href="https://wa.me/11234567890" target="_blank">
-        <img src="whatsapp-icono.png" alt="WhatsApp"> WhatsApp
-    </a>
-</div>
-        <div class="info-contacto">
-            <p>Correo Electrónico: <a href="mailto:atencionalcliente@dulcetradicion.com">atencionalcliente@dulcetradicion.com</a></p>
-            <p>Teléfono: <a href="tel:+11234567890">+1 (123) 456-7890</a></p>
-        </div>
-        <p>&copy; 2024 Dulce Tradición. Todos los derechos reservados.</p>
+        <p>&copy; 2024 Ponches - Dulce Tradición. Todos los derechos reservados.</p>
     </footer>
-
-    <script>
-        function realizarPedido() {
-            document.getElementById('formulario-pedido').style.display = 'block';
-            calcularPrecioTotal(); 
-        }
-
-        function calcularPrecioTotal() {
-            const cantidad1 = parseInt(document.getElementById('cantidad1').value) || 0;
-            const cantidad2 = parseInt(document.getElementById('cantidad2').value) || 0;
-
-            const precio1 = 900.00; // Precio Ponche Dulce de Leche 700 ML
-            const precio2 = 200.00; // Precio Ponche Dulce de Leche 4 oz
-
-            const total1 = cantidad1 * precio1;
-            const total2 = cantidad2 * precio2;
-
-            const total = total1 + total2;
-
-            let detalle = 'Productos:\n';
-            if (cantidad1 > 0) {
-                detalle += ${cantidad1} x Ponche Dulce de Leche (700 ML) a $${precio1.toFixed(2)}\n;
-            }
-            if (cantidad2 > 0) {
-                detalle += ${cantidad2} x Ponche Dulce de Leche (4 oz) a $${precio2.toFixed(2)}\n;
-            }
-
-            document.getElementById('detalle-pedido').innerText = detalle;
-            document.getElementById('precio-pedido').innerText = Total a Pagar: $${total.toFixed(2)};
-        }
-
-        function mostrarOpcionesPago() {
-            const metodoPago = document.getElementById('metodo-pago').value;
-            document.getElementById('datos-tarjeta').style.display = metodoPago === 'tarjeta' ? 'block' : 'none';
-            document.getElementById('datos-transferencia').style.display = metodoPago === 'transferencia' ? 'block' : 'none';
-        }
-
-        function confirmarPedido(event) {
-            event.preventDefault();
-            const nombre = document.getElementById('nombre').value;
-            const mensaje = Gracias, ${nombre}. Su pedido ha sido confirmado, un representante se estara comunicando con usted para los detalles de su entrega. Gracias por su compra!;
-            document.getElementById('mensaje-confirmacion').innerText = mensaje;
-            document.getElementById('formulario-pedido').reset();
-            document.getElementById('formulario-pedido').style.display = 'none';
-            return false;
-        }
-    </script>
 </body>
 </html>
