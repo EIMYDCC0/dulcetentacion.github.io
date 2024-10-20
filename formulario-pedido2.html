@@ -65,28 +65,48 @@
         </form>
     </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const producto = urlParams.get('producto');
-            const cantidad = urlParams.get('cantidad');
-            const precio = urlParams.get('precio');
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const productosJson = urlParams.get('productos');
 
-            if (producto && cantidad && precio) {
-                document.getElementById('producto').value = producto;
-                document.getElementById('cantidad').value = cantidad;
-                document.getElementById('precio').value = precio;
-            }
+        let productosSeleccionados = [];
+        if (productosJson) {
+            productosSeleccionados = JSON.parse(decodeURIComponent(productosJson));
+        }
 
-            const metodoPagoSelect = document.getElementById('metodo-pago');
-            metodoPagoSelect.addEventListener('change', () => {
-                const selectedOption = metodoPagoSelect.value;
-                document.getElementById('pago-tarjeta').style.display = selectedOption === 'tarjeta' ? 'block' : 'none';
-                document.getElementById('pago-transferencia').style.display = selectedOption === 'transferencia' ? 'block' : 'none';
-                document.getElementById('pago-efectivo').style.display = selectedOption === 'efectivo' ? 'block' : 'none';
-            });
+        const listaProductos = document.getElementById('lista-productos');
+        const totalInput = document.getElementById('total');
+
+        let total = 0;
+
+        productosSeleccionados.forEach(item => {
+            const productoInfo = document.createElement('div');
+            const subtotal = item.precio * item.cantidad;
+            productoInfo.innerHTML = `
+                <p><strong>${item.producto}</strong> - Cantidad: ${item.cantidad} - Precio unitario: $${item.precio} - Subtotal: $${subtotal}</p>
+            `;
+            listaProductos.appendChild(productoInfo);
+            total += subtotal;
         });
-    </script>
+
+        totalInput.value = total.toFixed(2);
+    });
+</script>
+
+    <body>
+    <section class="formulario">
+        <form id="pedido-form">
+            <label for="productos">Productos Seleccionados</label>
+            <div id="lista-productos"></div>
+
+            <label for="total">Total a Pagar ($)</label>
+            <input type="text" id="total" name="total" readonly>
+
+            <!-- Aquí va el resto del formulario: nombre, dirección, método de pago, etc. -->
+        </form>
+    </section>
 </body>
+
 </html>
 
