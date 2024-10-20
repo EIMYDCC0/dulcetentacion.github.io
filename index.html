@@ -16,6 +16,36 @@
             background-size: cover;
             background-repeat: no-repeat;
         }
+
+        /* Barra de navegación */
+        nav {
+            background-color: #8B0000;
+            overflow: hidden;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        nav a.active {
+            background-color: #25D366; /* Color de la sección activa */
+            color: white;
+        }
+
+        /* Rest of the styles */
         header {
             text-align: center;
             margin-bottom: 20px;
@@ -35,26 +65,6 @@
         h1 {
             color: #fff;
         }
-
-        /* Barra de navegación */
-        nav {
-            background-color: #228B22;
-            padding: 10px;
-            text-align: center;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-
         h2 {
             border-bottom: 2px solid #8B0000; 
             padding-bottom: 10px;
@@ -162,6 +172,7 @@
 
     <!-- Barra de navegación -->
     <nav>
+        <a href="#" class="active">Inicio</a>
         <a href="#sobre-nosotros">Sobre Nosotros</a>
         <a href="#ofertas">Ofertas</a>
         <a href="#datos-nutricionales">Datos Nutricionales</a>
@@ -198,26 +209,47 @@
         <p id="detalle-pedido"></p>
         <p id="precio-pedido"></p>
         <form onsubmit="return confirmarPedido(event)">
-            <!-- Formulario aquí -->
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+            <label for="direccion">Dirección de Envío:</label><br>
+            <input type="text" id="direccion" name="direccion" required><br><br>
+            <label for="telefono">Teléfono:</label><br>
+            <input type="tel" id="telefono" name="telefono" required><br><br>
+            <label for="email">Correo Electrónico:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="metodo-pago">Método de Pago:</label><br>
+            <select id="metodo-pago" name="metodo-pago" onchange="mostrarOpcionesPago()" required>
+                <option value="">Seleccione una opción</option>
+                <option value="tarjeta">Tarjeta</option>
+                <option value="efectivo">Efectivo</option>
+                <option value="transferencia">Transferencia</option>
+            </select><br><br>
+
+            <div id="datos-tarjeta">
+                <label for="numero-tarjeta">Número de Tarjeta:</label><br>
+                <input type="text" id="numero-tarjeta" name="numero-tarjeta" placeholder="1234 5678 9012 3456"><br><br>
+                <label for="fecha-expiracion">Fecha de Expiración:</label><br>
+                <input type="month" id="fecha-expiracion" name="fecha-expiracion"><br><br>
+                <label for="codigo-cvv">Código CVV:</label><br>
+                <input type="text" id="codigo-cvv" name="codigo-cvv" placeholder="123"><br><br>
+            </div>
+
+            <div id="datos-transferencia">
+                <p>Por favor, realice la transferencia al siguiente número de cuenta:</p>
+                <p><strong>Banco XYZ:</strong> 123-456789-01</p>
+                <p>Una vez realizada la transferencia, envíe el comprobante al correo electrónico: pedidos@ponchesdulce.com</p>
+            </div>
+
+            <button type="submit">Confirmar Pedido</button>
         </form>
-        <p id="mensaje-confirmacion"></p>
     </section>
 
     <footer>
-        <div class="contacto">
-            <a href="https://wa.me/11234567890" target="_blank">
-                <img src="whatsapp-icono.png" alt="WhatsApp"> WhatsApp
-            </a>
-        </div>
-        <div class="info-contacto">
-            <p>Correo Electrónico: <a href="mailto:atencionalcliente@dulcetradicion.com">atencionalcliente@dulcetradicion.com</a></p>
-            <p>Teléfono: <a href="tel:+11234567890">+1 (123) 456-7890</a></p>
-        </div>
-        <p>&copy; 2024 Dulce Tradición. Todos los derechos reservados.</p>
+        <p>&copy; 2024 Ponches - Dulce Tradición. Todos los derechos reservados.</p>
     </footer>
 
-    <script>
-        // Funciones JavaScript aquí
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
+
