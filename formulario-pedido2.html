@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Pedido - Dulce Tradición</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            background-color: #8B0000;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .formulario {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .formulario label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .formulario input, .formulario select, .formulario textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .formulario button {
+            background-color: #8B0000;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .formulario button:hover {
+            background-color: #a31212;
+        }
+        .oculto {
+            display: none;
+        }
+        .info-bancaria {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Formulario de Pedido</h1>
+    </header>
+
+    <section class="formulario">
+        <form id="pedido-form">
+            <label for="producto">Producto</label>
+            <select id="producto" name="producto" required>
+                <option value="producto1" data-precio="10">Producto 1 - $10</option>
+                <option value="producto2" data-precio="15">Producto 2 - $15</option>
+            </select>
+
+            <label for="cantidad">Cantidad</label>
+            <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
+
+            <label for="precio">Precio Unitario ($)</label>
+            <input type="text" id="precio" name="precio" readonly>
+
+            <label for="total">Total a Pagar ($)</label>
+            <input type="text" id="total" name="total" readonly>
+
+            <label for="nombre">Nombre Completo</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="direccion">Dirección de Envío</label>
+            <textarea id="direccion" name="direccion" rows="3" required></textarea>
+
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" required>
+
+            <label for="email">Correo Electrónico</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="metodo-pago">Método de Pago</label>
+            <select id="metodo-pago" name="metodo-pago" required>
+                <option value="">Seleccione...</option>
+                <option value="efectivo">Efectivo</option>
+                <option value="tarjeta">Tarjeta</option>
+                <option value="transferencia">Transferencia</option>
+            </select>
+
+            <div id="datos-tarjeta" class="oculto">
+                <label for="num-tarjeta">Número de Tarjeta</label>
+                <input type="text" id="num-tarjeta" name="num-tarjeta">
+                <label for="fecha-exp">Fecha de Expiración (MM/AA)</label>
+                <input type="text" id="fecha-exp" name="fecha-exp">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv">
+            </div>
+
+            <div id="datos-transferencia" class="oculto">
+                <div class="info-bancaria">
+                    <p><strong>Datos para Transferencia Bancaria:</strong><br>
+                    Titular: Dulce Tradición<br>
+                    Banco: Banco Popular<br>
+                    Cuenta de Ahorros No.: 775098123<br>
+                    Cédula: 402-1322456-7</p>
+                </div>
+                <label for="num-transaccion">Número de Transacción</label>
+                <input type="text" id="num-transaccion" name="num-transaccion">
+            </div>
+
+            <p id="mensaje-efectivo" class="oculto">Realizará el pago en efectivo cuando reciba el producto.</p>
+
+            <button type="submit">Confirmar Pedido</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Dulce Tradición. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const productoSelect = document.getElementById('producto');
+        const cantidadInput = document.getElementById('cantidad');
+        const precioInput = document.getElementById('precio');
+        const totalInput = document.getElementById('total');
+        const metodoPago = document.getElementById('metodo-pago');
+        const datosTarjeta = document.getElementById('datos-tarjeta');
+        const datosTransferencia = document.getElementById('datos-transferencia');
+        const mensajeEfectivo = document.getElementById('mensaje-efectivo');
+
+        // Actualizar el precio y el total según el producto seleccionado
+        function actualizarPrecio() {
+            const precio = parseFloat(productoSelect.selectedOptions[0].getAttribute('data-precio'));
+            const cantidad = parseInt(cantidadInput.value);
+            precioInput.value = precio.toFixed(2);
+            totalInput.value = (precio * cantidad).toFixed(2);
+        }
+
+        productoSelect.addEventListener('change', actualizarPrecio);
+        cantidadInput.addEventListener('input', actualizarPrecio);
+
+        // Mostrar campos adicionales según el método de pago seleccionado
+        metodoPago.addEventListener('change', function() {
+            datosTarjeta.classList.add('oculto');
+            datosTransferencia.classList.add('oculto');
+            mensajeEfectivo.classList.add('oculto');
+
+            if (this.value === 'tarjeta') {
+                datosTarjeta.classList.remove('oculto');
+            } else if (this.value === 'transferencia') {
+                datosTransferencia.classList.remove('oculto');
+            } else if (this.value === 'efectivo') {
+                mensajeEfectivo.classList.remove('oculto');
+            }
+        });
+
+        // Manejo del envío del formulario
+        document.getElementById('pedido-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Su pedido fue recibido. Dentro de las próximas 24 horas, un representante se estará comunicando con usted para el envío del producto.');
+        });
+
+        // Inicializar el precio
+        actualizarPrecio();
+    </script>
+</body>
+</html>
