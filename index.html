@@ -16,36 +16,6 @@
             background-size: cover;
             background-repeat: no-repeat;
         }
-
-        /* Barra de navegación */
-        nav {
-            background-color: #8B0000;
-            overflow: hidden;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-
-        nav a {
-            float: left;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-        }
-
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        nav a.active {
-            background-color: #25D366; /* Color de la sección activa */
-            color: white;
-        }
-
-        /* Rest of the styles */
         header {
             text-align: center;
             margin-bottom: 20px;
@@ -170,15 +140,6 @@
         <img src="tree-icon.png" alt="Ícono de árbol de Navidad">
     </header>
 
-    <!-- Barra de navegación -->
-    <nav>
-        <a href="#" class="active">Inicio</a>
-        <a href="#sobre-nosotros">Sobre Nosotros</a>
-        <a href="#ofertas">Ofertas</a>
-        <a href="#datos-nutricionales">Datos Nutricionales</a>
-        <a href="#nuevos-lanzamientos">Nuevos Lanzamientos</a>
-    </nav>
-
     <section id="productos">
         <h2>Nuestros Productos</h2>
 
@@ -231,25 +192,84 @@
                 <input type="text" id="numero-tarjeta" name="numero-tarjeta" placeholder="1234 5678 9012 3456"><br><br>
                 <label for="fecha-expiracion">Fecha de Expiración:</label><br>
                 <input type="month" id="fecha-expiracion" name="fecha-expiracion"><br><br>
-                <label for="codigo-cvv">Código CVV:</label><br>
-                <input type="text" id="codigo-cvv" name="codigo-cvv" placeholder="123"><br><br>
+                <label for="cvv">CVV:</label><br>
+                <input type="text" id="cvv" name="cvv" placeholder="123"><br><br>
             </div>
 
             <div id="datos-transferencia">
-                <p>Por favor, realice la transferencia al siguiente número de cuenta:</p>
-                <p><strong>Banco XYZ:</strong> 123-456789-01</p>
-                <p>Una vez realizada la transferencia, envíe el comprobante al correo electrónico: pedidos@ponchesdulce.com</p>
+                <h4>Datos para Transferencia Bancaria</h4>
+                <p><strong>Titular:</strong> Dulce Tradición</p>
+                <p><strong>Banco:</strong> Banco Popular</p>
+                <p><strong>Cuenta de Ahorros No.:</strong> 775098123</p>
+                <p><strong>Cédula:</strong> 402-1322456-7</p>
+                <p>Una vez realizada la transacción, por favor ingrese el número de transacción a continuación:</p>
+                <label for="numero-transaccion">Número de Transacción:</label><br>
+                <input type="text" id="numero-transaccion" name="numero-transaccion" required><br><br> <!-- Campo habilitado -->
             </div>
 
             <button type="submit">Confirmar Pedido</button>
         </form>
+        <p id="mensaje-confirmacion"></p>
     </section>
 
     <footer>
-        <p>&copy; 2024 Ponches - Dulce Tradición. Todos los derechos reservados.</p>
+        <div class="contacto">
+    <a href="https://wa.me/11234567890" target="_blank">
+        <img src="whatsapp-icono.png" alt="WhatsApp"> WhatsApp
+    </a>
+</div>
+        <div class="info-contacto">
+            <p>Correo Electrónico: <a href="mailto:atencionalcliente@dulcetradicion.com">atencionalcliente@dulcetradicion.com</a></p>
+            <p>Teléfono: <a href="tel:+11234567890">+1 (123) 456-7890</a></p>
+        </div>
+        <p>&copy; 2024 Dulce Tradición. Todos los derechos reservados.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        function realizarPedido() {
+            document.getElementById('formulario-pedido').style.display = 'block';
+            calcularPrecioTotal(); 
+        }
+
+        function calcularPrecioTotal() {
+            const cantidad1 = parseInt(document.getElementById('cantidad1').value) || 0;
+            const cantidad2 = parseInt(document.getElementById('cantidad2').value) || 0;
+
+            const precio1 = 900.00; // Precio Ponche Dulce de Leche 700 ML
+            const precio2 = 200.00; // Precio Ponche Dulce de Leche 4 oz
+
+            const total1 = cantidad1 * precio1;
+            const total2 = cantidad2 * precio2;
+
+            const total = total1 + total2;
+
+            let detalle = 'Productos:\n';
+            if (cantidad1 > 0) {
+                detalle += ${cantidad1} x Ponche Dulce de Leche (700 ML) a $${precio1.toFixed(2)}\n;
+            }
+            if (cantidad2 > 0) {
+                detalle += ${cantidad2} x Ponche Dulce de Leche (4 oz) a $${precio2.toFixed(2)}\n;
+            }
+
+            document.getElementById('detalle-pedido').innerText = detalle;
+            document.getElementById('precio-pedido').innerText = Total a Pagar: $${total.toFixed(2)};
+        }
+
+        function mostrarOpcionesPago() {
+            const metodoPago = document.getElementById('metodo-pago').value;
+            document.getElementById('datos-tarjeta').style.display = metodoPago === 'tarjeta' ? 'block' : 'none';
+            document.getElementById('datos-transferencia').style.display = metodoPago === 'transferencia' ? 'block' : 'none';
+        }
+
+        function confirmarPedido(event) {
+            event.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            const mensaje = Gracias, ${nombre}. Su pedido ha sido confirmado, un representante se estara comunicando con usted para los detalles de su entrega. Gracias por su compra!;
+            document.getElementById('mensaje-confirmacion').innerText = mensaje;
+            document.getElementById('formulario-pedido').reset();
+            document.getElementById('formulario-pedido').style.display = 'none';
+            return false;
+        }
+    </script>
 </body>
 </html>
-
