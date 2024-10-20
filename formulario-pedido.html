@@ -73,23 +73,14 @@
 
     <section class="formulario">
         <form id="pedido-form">
-            <label for="producto1">Producto 1</label>
-            <input type="text" id="producto1" name="producto1" readonly>
+            <label for="producto">Producto</label>
+            <input type="text" id="producto" name="producto" readonly>
 
-            <label for="cantidad1">Cantidad de Producto 1</label>
-            <input type="number" id="cantidad1" name="cantidad1" min="1" value="1" required>
-
-            <label for="producto2">Producto 2</label>
-            <input type="text" id="producto2" name="producto2" readonly>
-
-            <label for="cantidad2">Cantidad de Producto 2</label>
-            <input type="number" id="cantidad2" name="cantidad2" min="1" value="1" required>
+            <label for="cantidad">Cantidad</label>
+            <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
 
             <label for="total">Total a Pagar ($)</label>
             <input type="text" id="total" name="total" readonly>
-
-            <label for="descripcion">Descripción del Pedido</label>
-            <textarea id="descripcion" name="descripcion" rows="3" readonly></textarea>
 
             <label for="nombre">Nombre Completo</label>
             <input type="text" id="nombre" name="nombre" required>
@@ -108,6 +99,7 @@
                 <option value="transferencia">Transferencia</option>
             </select>
 
+            <!-- Campos para pago con tarjeta -->
             <div id="datos-tarjeta" class="oculto">
                 <label for="num-tarjeta">Número de Tarjeta</label>
                 <input type="text" id="num-tarjeta" name="num-tarjeta">
@@ -119,6 +111,7 @@
                 <input type="text" id="cvv" name="cvv">
             </div>
 
+            <!-- Campos para pago por transferencia -->
             <div id="datos-transferencia" class="oculto">
                 <p><strong>Datos para Transferencia Bancaria:</strong><br>
                 Titular: Dulce Tradición<br>
@@ -141,37 +134,26 @@
     <script>
         // Obtener parámetros de la URL
         const urlParams = new URLSearchParams(window.location.search);
-        const producto1 = urlParams.get('producto1');
-        const precio1 = parseFloat(urlParams.get('precio1'));
-        const producto2 = urlParams.get('producto2');
-        const precio2 = parseFloat(urlParams.get('precio2'));
-
-        // Actualizar los campos de productos
-        if (producto1) {
-            document.getElementById('producto1').value = producto1;
-        }
-        if (producto2) {
-            document.getElementById('producto2').value = producto2;
+        const producto = urlParams.get('producto');
+        const precio = parseFloat(urlParams.get('precio'));
+        
+        // Actualizar el campo de producto
+        if (producto) {
+            document.getElementById('producto').value = producto;
         }
 
-        // Función para actualizar el total y la descripción
+        // Función para actualizar el total según la cantidad seleccionada
         function actualizarTotal() {
-            const cantidad1 = parseInt(document.getElementById('cantidad1').value);
-            const cantidad2 = parseInt(document.getElementById('cantidad2').value);
-
-            const total = (precio1 * cantidad1) + (precio2 * cantidad2);
+            const cantidad = parseInt(document.getElementById('cantidad').value);
+            const total = precio * cantidad;
             if (!isNaN(total)) {
                 document.getElementById('total').value = total.toFixed(2);
             }
-
-            const descripcion = `Pedido de ${cantidad1} x ${producto1} y ${cantidad2} x ${producto2}`;
-            document.getElementById('descripcion').value = descripcion;
         }
 
-        // Escuchar cambios en las cantidades para actualizar el total y la descripción
-        document.getElementById('cantidad1').addEventListener('input', actualizarTotal);
-        document.getElementById('cantidad2').addEventListener('input', actualizarTotal);
-
+        // Escuchar cambios en la cantidad para actualizar el total
+        document.getElementById('cantidad').addEventListener('input', actualizarTotal);
+        
         // Calcular el total inicial
         actualizarTotal();
 
@@ -201,5 +183,6 @@
 </body>
 </html>
 
+ 
 
  
