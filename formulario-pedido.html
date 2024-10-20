@@ -99,7 +99,6 @@
                 <option value="transferencia">Transferencia</option>
             </select>
 
-            <!-- Campos para pago con tarjeta -->
             <div id="datos-tarjeta" class="oculto">
                 <label for="num-tarjeta">Número de Tarjeta</label>
                 <input type="text" id="num-tarjeta" name="num-tarjeta">
@@ -111,7 +110,6 @@
                 <input type="text" id="cvv" name="cvv">
             </div>
 
-            <!-- Campos para pago por transferencia -->
             <div id="datos-transferencia" class="oculto">
                 <p><strong>Datos para Transferencia Bancaria:</strong><br>
                 Titular: Dulce Tradición<br>
@@ -132,17 +130,14 @@
     </footer>
 
     <script>
-        // Obtener parámetros de la URL
         const urlParams = new URLSearchParams(window.location.search);
         const producto = urlParams.get('producto');
         const precio = parseFloat(urlParams.get('precio'));
-        
-        // Actualizar el campo de producto
+
         if (producto) {
             document.getElementById('producto').value = producto;
         }
 
-        // Función para actualizar el total según la cantidad seleccionada
         function actualizarTotal() {
             const cantidad = parseInt(document.getElementById('cantidad').value);
             const total = precio * cantidad;
@@ -151,13 +146,9 @@
             }
         }
 
-        // Escuchar cambios en la cantidad para actualizar el total
         document.getElementById('cantidad').addEventListener('input', actualizarTotal);
-        
-        // Calcular el total inicial
         actualizarTotal();
 
-        // Mostrar campos adicionales según el método de pago seleccionado
         const metodoPago = document.getElementById('metodo-pago');
         const datosTarjeta = document.getElementById('datos-tarjeta');
         const datosTransferencia = document.getElementById('datos-transferencia');
@@ -173,16 +164,13 @@
             }
         });
 
-        // Manejo del envío del formulario
         document.getElementById('pedido-form').addEventListener('submit', function(event) {
             event.preventDefault();
             alert('Pedido enviado correctamente');
-            // Aquí podrías añadir la lógica para enviar los datos al servidor
         });
     </script>
 </body>
 </html>
 
- 
 
  
