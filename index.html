@@ -7,32 +7,81 @@
     <title>Ponches - Dulce Tradición</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Estilos generales */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
             background-color: #f9f9f9;
+            background-image: url('.jpeg'); 
+            background-size: cover;
+            background-repeat: no-repeat;
         }
-        nav, header, footer {
-            background-color: #8B0000;
-            color: white;
-            padding: 10px;
+        header {
             text-align: center;
-            margin-bottom: 10px;
-        }
-        nav a {
+            margin-bottom: 20px;
+            background-color: #8B0000; 
+            padding: 20px;
+            border-radius: 5px;
             color: white;
-            text-decoration: none;
-            margin: 0 15px;
+            position: relative;
         }
-        .producto, .info-contacto {
-            background-color: white;
+        header img {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 60px;
+            height: auto;
+        }
+        h1 {
+            color: #fff;
+        }
+        h2 {
+            border-bottom: 2px solid #8B0000; 
+            padding-bottom: 10px;
+        }
+        .producto {
             border: 1px solid #ddd;
             border-radius: 5px;
             padding: 10px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 10px;
+            flex: 1;
+            margin: 10px;
+        }
+        .producto img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        #productos {
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            gap: 20px;
+        }
+        #formulario-pedido {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #datos-tarjeta, #datos-transferencia {
+            display: none;
+            margin-top: 10px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+            background-color: #8B0000; 
+            padding: 10px;
+            border-radius: 5px;
         }
         .contacto {
             display: flex;
@@ -41,126 +90,185 @@
             margin-top: 20px;
         }
         .contacto a {
-            background-color: #25D366;
+            text-decoration: none;
             color: white;
+            background-color: #25D366; 
             padding: 10px 20px;
             border-radius: 50px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+        .contacto img {
+            width: 24px;
+            height: 24px;
             margin-right: 10px;
-            text-decoration: none;
         }
-        #formulario-pedido {
-            display: none;
+        #btn-hacer-pedido {
+            margin: 20px auto; 
+            display: block; 
+            padding: 10px 20px;
+            background-color: #25D366; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .info-contacto {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
-        }
-        #datos-tarjeta, #datos-transferencia {
-            display: none;
+            text-align: center;
         }
         .info-contacto p {
+            margin: 0 0 10px;
             color: #555;
+        }
+        .info-contacto a {
+            color: #8B0000; 
+            text-decoration: none;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <!-- Barra de navegación -->
-    <nav>
-        <a href="#sobre-nosotros">Sobre Nosotros</a>
-        <a href="#nuevos-productos">Nuevos Productos</a>
-        <a href="#ofertas">Ofertas</a>
-        <a href="#datos-nutricionales">Datos Nutricionales</a>
-    </nav>
-
     <header>
         <h1>Ponches - Dulce Tradición</h1>
         <p>Disfruta del mejor ponche tradicional, elaborado con ingredientes de calidad y un toque especial de dulce de leche.</p>
+        <img src="tree-icon.png" alt="Ícono de árbol de Navidad">
     </header>
 
     <section id="productos">
         <h2>Nuestros Productos</h2>
+
+        <h3>Con Alcohol</h3>
         <div class="producto">
-            <h3>Ponche Dulce de Leche (700 ML)</h3>
-            <p>Precio: $900.00</p>
+            <img src="ponche-dulce-de-leche.jpg.jpeg" alt="Ponche Dulce de Leche">
+            <h4>Ponche Dulce de Leche (700 ML)</h4>
+            <p>Un exquisito ponche con el sabor cremoso del dulce de leche, ideal para disfrutar en cualquier ocasión.</p>
+            <p><strong>Precio:</strong> $900.00</p>
             <label for="cantidad1">Cantidad:</label>
             <input type="number" id="cantidad1" name="cantidad1" value="0" min="0" onchange="calcularPrecioTotal()">
         </div>
-        <button onclick="realizarPedido()">Hacer Pedido</button>
+
+        <div class="producto">
+            <img src="ponche-dulce-de-leche.jpg.jpeg" alt="Ponche Dulce de Leche 4 onzas">
+            <h4>Ponche Dulce de Leche (4 oz)</h4>
+            <p>Perfecto para una pequeña degustación del delicioso sabor del dulce de leche.</p>
+            <p><strong>Precio:</strong> $200.00</p>
+            <label for="cantidad2">Cantidad:</label>
+            <input type="number" id="cantidad2" name="cantidad2" value="0" min="0" onchange="calcularPrecioTotal()">
+        </div>
+
+        <button id="btn-hacer-pedido" onclick="realizarPedido()">Hacer Pedido</button>
     </section>
 
     <section id="formulario-pedido">
         <h2>Formulario de Pedido</h2>
         <p id="detalle-pedido"></p>
+        <p id="precio-pedido"></p>
         <form onsubmit="return confirmarPedido(event)">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required><br>
-            <label for="direccion">Dirección de Envío:</label>
-            <input type="text" id="direccion" name="direccion" required><br>
-            <label for="metodo-pago">Método de Pago:</label>
-            <select id="metodo-pago" onchange="mostrarOpcionesPago()">
-                <option value="">Seleccione</option>
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+            <label for="direccion">Dirección de Envío:</label><br>
+            <input type="text" id="direccion" name="direccion" required><br><br>
+            <label for="telefono">Teléfono:</label><br>
+            <input type="tel" id="telefono" name="telefono" required><br><br>
+            <label for="email">Correo Electrónico:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="metodo-pago">Método de Pago:</label><br>
+            <select id="metodo-pago" name="metodo-pago" onchange="mostrarOpcionesPago()" required>
+                <option value="">Seleccione una opción</option>
                 <option value="tarjeta">Tarjeta</option>
+                <option value="efectivo">Efectivo</option>
                 <option value="transferencia">Transferencia</option>
-            </select><br>
+            </select><br><br>
+
             <div id="datos-tarjeta">
-                <label for="numero-tarjeta">Número de Tarjeta:</label>
-                <input type="text" id="numero-tarjeta"><br>
+                <label for="numero-tarjeta">Número de Tarjeta:</label><br>
+                <input type="text" id="numero-tarjeta" name="numero-tarjeta" placeholder="1234 5678 9012 3456"><br><br>
+                <label for="fecha-expiracion">Fecha de Expiración:</label><br>
+                <input type="month" id="fecha-expiracion" name="fecha-expiracion"><br><br>
+                <label for="cvv">CVV:</label><br>
+                <input type="text" id="cvv" name="cvv" placeholder="123"><br><br>
             </div>
+
             <div id="datos-transferencia">
-                <p>Datos de Transferencia...</p>
+                <h4>Datos para Transferencia Bancaria</h4>
+                <p><strong>Titular:</strong> Dulce Tradición</p>
+                <p><strong>Banco:</strong> Banco Popular</p>
+                <p><strong>Cuenta de Ahorros No.:</strong> 775098123</p>
+                <p><strong>Cédula:</strong> 402-1322456-7</p>
+                <p>Una vez realizada la transacción, por favor ingrese el número de transacción a continuación:</p>
+                <label for="numero-transaccion">Número de Transacción:</label><br>
+                <input type="text" id="numero-transaccion" name="numero-transaccion" required><br><br>
             </div>
+
             <button type="submit">Confirmar Pedido</button>
         </form>
+        <p id="mensaje-confirmacion"></p>
     </section>
 
-    <!-- Sección de contacto -->
-    <div class="contacto">
-        <a href="https://wa.me/1234567890" target="_blank">Contáctanos por WhatsApp</a>
-    </div>
-
-    <div class="info-contacto">
-        <h3>Información de Contacto</h3>
-        <p>Email: info@ponchesdulces.com</p>
-        <p>Teléfono: +123 456 7890</p>
-    </div>
-
     <footer>
-        <p>&copy; 2024 Ponches - Dulce Tradición. Todos los derechos reservados.</p>
+        <div class="contacto">
+            <a href="https://wa.me/1234567890" target="_blank">
+                <img src="whatsapp-icon.png" alt="WhatsApp"> Contáctanos por WhatsApp
+            </a>
+        </div>
+        <div class="info-contacto">
+            <p>Correo: info@dulcetradicion.com</p>
+            <p>Teléfono: +1 809 123 4567</p>
+        </div>
+        <p>&copy; 2024 Dulce Tradición. Todos los derechos reservados.</p>
     </footer>
 
     <script>
         function calcularPrecioTotal() {
             const cantidad1 = parseInt(document.getElementById('cantidad1').value) || 0;
+            const cantidad2 = parseInt(document.getElementById('cantidad2').value) || 0;
             const precio1 = 900;
-            const total = cantidad1 * precio1;
+            const precio2 = 200;
+            const total = (cantidad1 * precio1) + (cantidad2 * precio2);
+            let detalle = '';
 
             if (cantidad1 > 0) {
-                document.getElementById('detalle-pedido').innerText = 'Ponche Dulce de Leche (700 ML): ' + cantidad1 + ' unidades';
-                document.getElementById('formulario-pedido').style.display = 'block';
-            } else {
-                document.getElementById('formulario-pedido').style.display = 'none';
+                detalle += `Ponche Dulce de Leche (700 ML): ${cantidad1} unidades`;
             }
+            if (cantidad2 > 0) {
+                detalle += (detalle ? ', ' : '') + `Ponche Dulce de Leche (4 oz): ${cantidad2} unidades`;
+            }
+
+            document.getElementById('detalle-pedido').innerText = detalle;
+            document.getElementById('precio-pedido').innerText = `Total: $${total}`;
         }
 
         function realizarPedido() {
-            const cantidad1 = document.getElementById('cantidad1').value;
+            const cantidad1 = parseInt(document.getElementById('cantidad1').value) || 0;
+            const cantidad2 = parseInt(document.getElementById('cantidad2').value) || 0;
 
-            if (cantidad1 > 0) {
+            if (cantidad1 > 0 || cantidad2 > 0) {
                 document.getElementById('formulario-pedido').style.display = 'block';
+                calcularPrecioTotal();
             } else {
-                alert('Por favor, selecciona una cantidad antes de realizar el pedido.');
+                alert('Por favor, seleccione al menos una cantidad antes de realizar el pedido.');
             }
         }
 
         function mostrarOpcionesPago() {
             const metodoPago = document.getElementById('metodo-pago').value;
-
             document.getElementById('datos-tarjeta').style.display = metodoPago === 'tarjeta' ? 'block' : 'none';
             document.getElementById('datos-transferencia').style.display = metodoPago === 'transferencia' ? 'block' : 'none';
         }
 
         function confirmarPedido(event) {
             event.preventDefault();
-            alert('¡Pedido confirmado! Gracias por tu compra.');
+            document.getElementById('mensaje-confirmacion').innerText = '¡Pedido confirmado! Gracias por su compra.';
             document.getElementById('formulario-pedido').style.display = 'none';
         }
     </script>
 </body>
 </html>
+
