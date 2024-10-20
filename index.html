@@ -196,7 +196,7 @@
                 const producto = cantidad1 > 0 ? 'Ponche Dulce de Leche (700 ML)' : 'Ponche Dulce de Leche (4 oz)';
                 const cantidad = cantidad1 > 0 ? cantidad1 : cantidad2;
                 const precio = cantidad1 > 0 ? 900 : 200;
-                
+
                 // Redirigir al formulario de pedido con los datos en la URL
                 window.location.href = `formulario-pedido2.html?producto=${encodeURIComponent(producto)}&cantidad=${cantidad}&precio=${precio}`;
             } else {
@@ -206,3 +206,4 @@
     </script>
 </body>
 </html>
+
