@@ -15,7 +15,7 @@
             background-color: #f9f9f9;
             background-size: cover;
             background-repeat: no-repeat;
-            overflow: hidden; /* Para que la nieve no desborde */
+            overflow-x: hidden; /* Permite el desplazamiento vertical */
         }
 
         /* Efecto de nieve */
@@ -167,7 +167,6 @@
 </head>
 <body>
     <header>
-        <!-- Imagen del logo añadida aquí -->
         <img src="logo-2.png.png" alt="Logo Dulce Tradición">
         <h1>Ponches - Dulce Tradición</h1>
         <p>Disfruta del mejor ponche tradicional, elaborado con ingredientes de calidad y un toque especial de dulce de leche.</p>
@@ -175,7 +174,6 @@
     </header>
 
     <div id="snow-container">
-        <!-- Se generarán los copos de nieve aquí -->
         <div class="snowflake"></div>
         <div class="snowflake"></div>
         <div class="snowflake"></div>
@@ -211,9 +209,9 @@
         </div>
 
         <div class="producto">
-            <img src="ponche-dulce-de-leche.jpg.jpeg" alt="Ponche Dulce de Leche 4 onzas">
+            <img src="ponche-dulce-de-leche.jpg.jpeg" alt="Ponche Dulce de Leche">
             <h4>Ponche Dulce de Leche (4 oz)</h4>
-            <p>Perfecto para una pequeña degustación del delicioso sabor del dulce de leche.</p>
+            <p>El sabor inigualable del dulce de leche en una presentación pequeña.</p>
             <p><strong>Precio:</strong> $200.00</p>
             <label for="cantidad2">Cantidad:</label>
             <input type="number" id="cantidad2" name="cantidad2" value="0" min="0">
@@ -249,3 +247,4 @@
     </div>
 </body>
 </html>
+
