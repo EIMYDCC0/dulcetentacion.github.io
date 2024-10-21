@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -13,42 +13,11 @@
             margin: 0;
             padding: 20px;
             background-color: #f9f9f9;
+            background-image: url('.jpeg'); 
             background-size: cover;
             background-repeat: no-repeat;
-            overflow-x: hidden; /* Permite el desplazamiento vertical */
+            overflow-y: scroll; /* Permite desplazamiento vertical */
         }
-
-        /* Efecto de nieve */
-        .snowflake {
-            position: fixed;
-            top: -10px;
-            background-color: white;
-            border-radius: 50%;
-            opacity: 0.8;
-            animation: fall 10s linear infinite;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-10px) translateX(0);
-            }
-            100% {
-                transform: translateY(100vh) translateX(10vw);
-            }
-        }
-
-        /* Diferentes tamaños y caídas aleatorias para los copos */
-        .snowflake:nth-child(1) { width: 5px; height: 5px; left: 10%; animation-duration: 12s; }
-        .snowflake:nth-child(2) { width: 7px; height: 7px; left: 20%; animation-duration: 9s; }
-        .snowflake:nth-child(3) { width: 4px; height: 4px; left: 30%; animation-duration: 10s; }
-        .snowflake:nth-child(4) { width: 6px; height: 6px; left: 40%; animation-duration: 15s; }
-        .snowflake:nth-child(5) { width: 8px; height: 8px; left: 50%; animation-duration: 8s; }
-        .snowflake:nth-child(6) { width: 6px; height: 6px; left: 60%; animation-duration: 13s; }
-        .snowflake:nth-child(7) { width: 5px; height: 5px; left: 70%; animation-duration: 11s; }
-        .snowflake:nth-child(8) { width: 7px; height: 7px; left: 80%; animation-duration: 14s; }
-        .snowflake:nth-child(9) { width: 4px; height: 4px; left: 90%; animation-duration: 9s; }
-        .snowflake:nth-child(10) { width: 6px; height: 6px; left: 100%; animation-duration: 16s; }
-
         .barra-navegacion {
             background-color: #4B8B3B;
             padding: 10px 20px;
@@ -90,9 +59,11 @@
             position: relative;
         }
         header img {
+            position: absolute;
+            top: 10px;
+            right: 10px;
             width: 60px;
             height: auto;
-            margin-bottom: 10px;
         }
         h1 {
             color: #fff;
@@ -163,29 +134,32 @@
             height: 24px;
             margin-right: 10px;
         }
+
+        /* Estilos para la nieve */
+        .snowflake {
+            position: absolute;
+            top: 0;
+            background-color: white;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall 10s linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <img src="logo-2.png.png" alt="Logo Dulce Tradición">
         <h1>Ponches - Dulce Tradición</h1>
         <p>Disfruta del mejor ponche tradicional, elaborado con ingredientes de calidad y un toque especial de dulce de leche.</p>
         <img src="tree-icon.png" alt="Ícono de árbol de Navidad">
     </header>
-
-    <div id="snow-container">
-        <div class="snowflake"></div>
-        <div class="snowflake"></div>
-        <div class="snowflake"></div>
-        <div class="snowflake"></div>
-        <div class="snowflake"></div>
-        <div class="snowflake"></div>
-        <div class="snowflake"></div>
-        <div class="snowflake"></div>
-        <div class="snowflake"></div>
-        <div class="snowflake"></div>
-    </div>
-
     <nav class="barra-navegacion">
         <ul>
             <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
@@ -209,42 +183,77 @@
         </div>
 
         <div class="producto">
-            <img src="ponche-dulce-de-leche.jpg.jpeg" alt="Ponche Dulce de Leche">
+            <img src="ponche-dulce-de-leche.jpg.jpeg" alt="Ponche Dulce de Leche 4 onzas">
             <h4>Ponche Dulce de Leche (4 oz)</h4>
-            <p>El sabor inigualable del dulce de leche en una presentación pequeña.</p>
+            <p>Perfecto para una pequeña degustación del delicioso sabor del dulce de leche.</p>
             <p><strong>Precio:</strong> $200.00</p>
             <label for="cantidad2">Cantidad:</label>
             <input type="number" id="cantidad2" name="cantidad2" value="0" min="0">
         </div>
 
-        <h3>Sin Alcohol</h3>
-
-        <div class="producto">
-            <img src="ponche-dulce-de-leche.jpg.jpeg" alt="Ponche sin Alcohol de Dulce de Leche 24 oz">
-            <h4>Ponche sin Alcohol de Dulce de Leche (24 oz)</h4>
-            <p>El sabor clásico del dulce de leche en una presentación sin alcohol para disfrutar con toda la familia.</p>
-            <p><strong>Precio:</strong> $800.00</p>
-            <label for="cantidad3">Cantidad:</label>
-            <input type="number" id="cantidad3" name="cantidad3" value="0" min="0">
-        </div>
-
-        <div class="producto">
-            <img src="ponche-dulce-de-leche.jpg.jpeg" alt="Ponche sin Alcohol de Dulce de Leche 4 oz">
-            <h4>Ponche sin Alcohol de Dulce de Leche (4 oz)</h4>
-            <p>Una opción sin alcohol en una presentación más pequeña para degustar.</p>
-            <p><strong>Precio:</strong> $150.00</p>
-            <label for="cantidad4">Cantidad:</label>
-            <input type="number" id="cantidad4" name="cantidad4" value="0" min="0">
-        </div>
+        <button id="btn-hacer-pedido" onclick="realizarPedido()">Hacer Pedido</button>
     </section>
 
     <footer>
+        <div class="contacto">
+            <a href="https://wa.me/1234567890" target="_blank">
+                <img src="whatsapp-icon.png" alt="WhatsApp"> Contáctanos por WhatsApp
+            </a>
+        </div>
+        <div class="info-contacto">
+            <p>Correo: info@dulcetradicion.com</p>
+            <p>Teléfono: +1 809 123 4567</p>
+        </div>
         <p>&copy; 2024 Dulce Tradición. Todos los derechos reservados.</p>
     </footer>
 
-    <div class="contacto">
-        <a href="https://wa.me/18291234567"><img src="whatsapp-icon.png" alt="WhatsApp">Hacer Pedido</a>
-    </div>
+   <script>
+    function realizarPedido() {
+        const cantidad1 = parseInt(document.getElementById('cantidad1').value) || 0;
+        const cantidad2 = parseInt(document.getElementById('cantidad2').value) || 0;
+
+        let productosSeleccionados = [];
+
+        if (cantidad1 > 0) {
+            productosSeleccionados.push({
+                producto: 'Ponche Dulce de Leche (700 ML)',
+                cantidad: cantidad1,
+                precio: 900
+            });
+        }
+        if (cantidad2 > 0) {
+            productosSeleccionados.push({
+                producto: 'Ponche Dulce de Leche (4 oz)',
+                cantidad: cantidad2,
+                precio: 200
+            });
+        }
+
+        if (productosSeleccionados.length > 0) {
+            const productosJson = encodeURIComponent(JSON.stringify(productosSeleccionados));
+            window.location.href = `formulario-pedido2.html?productos=${productosJson}`;
+        } else {
+            alert('Por favor, seleccione al menos una cantidad antes de realizar el pedido.');
+        }
+    }
+
+    // Función para generar nieve
+    function generarNieve() {
+        const numCopos = 100;
+        for (let i = 0; i < numCopos; i++) {
+            let copo = document.createElement("div");
+            copo.classList.add("snowflake");
+            copo.style.left = Math.random() * 100 + "vw";
+            copo.style.animationDuration = Math.random() * 3 + 7 + "s"; // Varía la duración
+            copo.style.opacity = Math.random();
+            document.body.appendChild(copo);
+        }
+    }
+
+    generarNieve(); // Llamada para generar la nieve
+
+</script>
 </body>
 </html>
+
 
