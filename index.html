@@ -12,14 +12,14 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #0b3d0b; /* Fondo verde oscuro navideño */
-            background-image: url('decoraciones-navidenas.png'); /* Fondo decorativo con elementos navideños */
+            background-color: #f9f9f9;
+            background-image: url('.jpeg'); 
             background-size: cover;
             background-repeat: no-repeat;
             overflow-y: scroll; /* Permite desplazamiento vertical */
         }
         .barra-navegacion {
-            background-color: #006400; /* Verde oscuro */
+            background-color: #4B8B3B;
             padding: 10px 20px;
             display: flex;
             justify-content: center;
@@ -46,13 +46,13 @@
             padding: 10px 15px;
         }
         .barra-navegacion a:hover {
-            background-color: #8B0000; /* Rojo oscuro navideño */
+            background-color: #356a24;
             border-radius: 5px;
         }
         header {
             text-align: center;
             margin-bottom: 20px;
-            background-color: #8B0000; /* Fondo rojo */
+            background-color: #8B0000;
             padding: 20px;
             border-radius: 5px;
             color: white;
@@ -66,12 +66,11 @@
             height: auto;
         }
         h1 {
-            color: gold; /* Título dorado */
+            color: #fff;
         }
         h2 {
-            border-bottom: 2px solid #8B0000; /* Rojo */
+            border-bottom: 2px solid #8B0000;
             padding-bottom: 10px;
-            color: white;
         }
         .producto {
             border: 1px solid #ddd;
@@ -100,7 +99,7 @@
             margin: 20px auto;
             display: block;
             padding: 10px 20px;
-            background-color: #25D366; /* Verde */
+            background-color: #25D366;
             color: white;
             border: none;
             border-radius: 5px;
@@ -109,8 +108,8 @@
         footer {
             text-align: center;
             margin-top: 20px;
-            color: white;
-            background-color: #8B0000; /* Fondo rojo oscuro */
+            color: #777;
+            background-color: #8B0000;
             padding: 10px;
             border-radius: 5px;
         }
@@ -123,7 +122,7 @@
         .contacto a {
             text-decoration: none;
             color: white;
-            background-color: #25D366; /* Verde */
+            background-color: #25D366;
             padding: 10px 20px;
             border-radius: 50px;
             font-size: 18px;
@@ -175,7 +174,7 @@
 
         <h3>Con Alcohol</h3>
         <div class="producto">
-            <img src="ponche- con-alcohol-700ml.jpeg" alt="Ponche Dulce de Leche">
+            <img src="ponche-dulce-de-leche.jpg.jpeg" alt="Ponche Dulce de Leche">
             <h4>Ponche Dulce de Leche (700 ML)</h4>
             <p>Un exquisito ponche con el sabor cremoso del dulce de leche, ideal para disfrutar en cualquier ocasión.</p>
             <p><strong>Precio:</strong> $900.00</p>
@@ -184,7 +183,7 @@
         </div>
 
         <div class="producto">
-            <img src="ponche-con-alcohol-4onza.jpeg" alt="Ponche Dulce de Leche 4 onzas">
+            <img src="ponche-dulce-de-leche.jpg.jpeg" alt="Ponche Dulce de Leche 4 onzas">
             <h4>Ponche Dulce de Leche (4 oz)</h4>
             <p>Perfecto para una pequeña degustación del delicioso sabor del dulce de leche.</p>
             <p><strong>Precio:</strong> $200.00</p>
@@ -238,20 +237,21 @@
         }
     }
 
-   <script>
     // Función para generar nieve
     function generarNieve() {
-        const numCopos = 50; // Reducido de 100 a 50
+        const numCopos = 100;
         for (let i = 0; i < numCopos; i++) {
-            const copo = document.createElement('div');
-            copo.classList.add('snowflake');
-            copo.style.left = Math.random() * window.innerWidth + 'px';
-            copo.style.animationDuration = Math.random() * 3 + 2 + 's'; // Entre 2 y 5 segundos
-            copo.style.animationDelay = Math.random() * 5 + 's'; // Diferentes tiempos de inicio
+            let copo = document.createElement("div");
+            copo.classList.add("snowflake");
+            copo.style.left = Math.random() * 100 + "vw";
+            copo.style.animationDuration = Math.random() * 3 + 7 + "s"; // Varía la duración
+            copo.style.opacity = Math.random();
             document.body.appendChild(copo);
         }
     }
-    generarNieve();
+
+    generarNieve(); // Llamada para generar la nieve
+
 </script>
 </body>
 </html>
