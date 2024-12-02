@@ -53,6 +53,13 @@
         .formulario button:hover {
             background-color: #a31212;
         }
+        .producto-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .producto-item p {
+            margin: 0;
+        }
         .oculto {
             display: none;
         }
@@ -102,11 +109,8 @@
 
     <section class="formulario">
         <form id="pedido-form">
-            <label for="producto">Producto</label>
-            <input type="text" id="producto" name="producto" readonly>
-
-            <label for="cantidad">Cantidad</label>
-            <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
+            <label for="productos">Productos Seleccionados</label>
+            <div id="lista-productos"></div>
 
             <label for="total">Total a Pagar ($)</label>
             <input type="text" id="total" name="total" readonly>
@@ -127,6 +131,8 @@
                 <option value="efectivo">Efectivo</option>
                 <option value="transferencia">Transferencia</option>
             </select>
+
+            <p id="mensaje-efectivo" class="mensaje oculto">Pagará a la hora de recibir el pedido.</p>
 
             <div id="datos-tarjeta" class="oculto">
                 <label for="num-tarjeta">Número de Tarjeta</label>
@@ -167,64 +173,58 @@
     </footer>
 
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const producto = urlParams.get('producto');
-        const precio = parseFloat(urlParams.get('precio'));
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productosJson = urlParams.get('productos');
+            let productosSeleccionados = productosJson ? JSON.parse(decodeURIComponent(productosJson)) : [];
 
-        if (producto) {
-            document.getElementById('producto').value = producto;
-        }
+            const listaProductos = document.getElementById('lista-productos');
+            const totalInput = document.getElementById('total');
+            let total = 0;
 
-        function actualizarTotal() {
-            const cantidad = parseInt(document.getElementById('cantidad').value);
-            const total = precio * cantidad;
-            if (!isNaN(total)) {
-                document.getElementById('total').value = total.toFixed(2);
-            }
-        }
-
-        document.getElementById('cantidad').addEventListener('input', actualizarTotal);
-        actualizarTotal();
-
-        const metodoPago = document.getElementById('metodo-pago');
-        const datosTarjeta = document.getElementById('datos-tarjeta');
-        const datosTransferencia = document.getElementById('datos-transferencia');
-
-        metodoPago.addEventListener('change', function() {
-            datosTarjeta.classList.add('oculto');
-            datosTransferencia.classList.add('oculto');
-
-            if (this.value === 'tarjeta') {
-                datosTarjeta.classList.remove('oculto');
-            } else if (this.value === 'transferencia') {
-                datosTransferencia.classList.remove('oculto');
-            }
-        });
-
-        document.getElementById('pedido-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            // Mostrar el modal
-            const modal = document.getElementById('modal-confirmacion');
-            modal.style.display = 'flex';
-
-            // Cerrar el modal al hacer clic en la "x"
-            modal.querySelector('.cerrar').addEventListener('click', function() {
-                modal.style.display = 'none';
+            productosSeleccionados.forEach(item => {
+                const productoInfo = document.createElement('div');
+                productoInfo.classList.add('producto-item');
+                const subtotal = item.precio * item.cantidad;
+                productoInfo.innerHTML = `
+                    <p><strong>${item.producto}</strong> - Cantidad: ${item.cantidad} - Precio unitario: $${item.precio} - Subtotal: $${subtotal}</p>
+                `;
+                listaProductos.appendChild(productoInfo);
+                total += subtotal;
             });
 
-            // Cerrar el modal al hacer clic fuera del contenido del modal
-            window.addEventListener('click', function(event) {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
+            totalInput.value = total.toFixed(2);
+
+            const metodoPago = document.getElementById('metodo-pago');
+            const datosTarjeta = document.getElementById('datos-tarjeta');
+            const datosTransferencia = document.getElementById('datos-transferencia');
+            const mensajeEfectivo = document.getElementById('mensaje-efectivo');
+
+            metodoPago.addEventListener('change', function() {
+                datosTarjeta.classList.add('oculto');
+                datosTransferencia.classList.add('oculto');
+                mensajeEfectivo.classList.add('oculto');
+
+                if (this.value === 'tarjeta') {
+                    datosTarjeta.classList.remove('oculto');
+                } else if (this.value === 'transferencia') {
+                    datosTransferencia.classList.remove('oculto');
+                } else if (this.value === 'efectivo') {
+                    mensajeEfectivo.classList.remove('oculto');
                 }
+            });
+
+            const modal = document.getElementById('modal-confirmacion');
+            document.getElementById('pedido-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                modal.style.display = 'flex';
+
+                modal.querySelector('.cerrar').addEventListener('click', () => modal.style.display = 'none');
+                window.addEventListener('click', event => {
+                    if (event.target === modal) modal.style.display = 'none';
+                });
             });
         });
     </script>
 </body>
 </html>
-
-
-
-
- 
