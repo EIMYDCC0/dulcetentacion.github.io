@@ -71,35 +71,6 @@
             padding: 10px;
             border-radius: 5px;
         }
-        /* Estilos para el modal */
-        .modal {
-            display: none; /* Oculto por defecto */
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-contenido {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            width: 80%;
-            max-width: 500px;
-            text-align: center;
-            position: relative;
-        }
-        .cerrar {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 18px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
@@ -124,49 +95,9 @@
             <label for="telefono">Teléfono</label>
             <input type="tel" id="telefono" name="telefono" required>
 
-            <label for="metodo-pago">Método de Pago</label>
-            <select id="metodo-pago" name="metodo-pago" required>
-                <option value="">Seleccione...</option>
-                <option value="tarjeta">Tarjeta</option>
-                <option value="efectivo">Efectivo</option>
-                <option value="transferencia">Transferencia</option>
-            </select>
-
-            <p id="mensaje-efectivo" class="mensaje oculto">Pagará a la hora de recibir el pedido.</p>
-
-            <div id="datos-tarjeta" class="oculto">
-                <label for="num-tarjeta">Número de Tarjeta</label>
-                <input type="text" id="num-tarjeta" name="num-tarjeta">
-
-                <label for="fecha-exp">Fecha de Expiración (MM/AA)</label>
-                <input type="text" id="fecha-exp" name="fecha-exp">
-
-                <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv">
-            </div>
-
-            <div id="datos-transferencia" class="oculto">
-                <p><strong>Datos para Transferencia Bancaria:</strong><br>
-                Titular: Dulce Tradición<br>
-                Banco: Banco Popular<br>
-                Cuenta de Ahorros No.: 775098123<br>
-                Cédula: 402-1322456-7</p>
-
-                <label for="num-transaccion">Número de Transacción</label>
-                <input type="text" id="num-transaccion" name="num-transaccion">
-            </div>
-
             <button type="submit">Enviar Pedido</button>
         </form>
     </section>
-
-    <!-- Modal de confirmación -->
-    <div id="modal-confirmacion" class="modal oculto">
-        <div class="modal-contenido">
-            <span class="cerrar">&times;</span>
-            <p>Pedido realizado correctamente. En un plazo de 24 horas, un representante se pondrá en contacto para coordinar la entrega.</p>
-        </div>
-    </div>
 
     <footer>
         <p>&copy; 2024 Dulce Tradición. Todos los derechos reservados.</p>
@@ -180,51 +111,48 @@
 
             const listaProductos = document.getElementById('lista-productos');
             const totalInput = document.getElementById('total');
-            let total = 0;
 
-            productosSeleccionados.forEach(item => {
+            function actualizarTotal() {
+                let total = 0;
+                productosSeleccionados.forEach((item, index) => {
+                    const cantidad = document.getElementById(`cantidad-${index}`).value;
+                    const subtotal = cantidad * item.precio;
+                    document.getElementById(`subtotal-${index}`).textContent = `Subtotal: $${subtotal.toFixed(2)}`;
+                    total += subtotal;
+                });
+                totalInput.value = total.toFixed(2);
+            }
+
+            productosSeleccionados.forEach((item, index) => {
                 const productoInfo = document.createElement('div');
                 productoInfo.classList.add('producto-item');
-                const subtotal = item.precio * item.cantidad;
                 productoInfo.innerHTML = `
-                    <p><strong>${item.producto}</strong> - Cantidad: ${item.cantidad} - Precio unitario: $${item.precio} - Subtotal: $${subtotal}</p>
+                    <p><strong>${item.producto}</strong></p>
+                    <p>Precio unitario: $${item.precio}</p>
+                    <label for="cantidad-${index}">Cantidad:</label>
+                    <input type="number" id="cantidad-${index}" name="cantidad-${index}" value="${item.cantidad}" min="0">
+                    <p id="subtotal-${index}">Subtotal: $${(item.precio * item.cantidad).toFixed(2)}</p>
                 `;
                 listaProductos.appendChild(productoInfo);
-                total += subtotal;
+
+                document.getElementById(`cantidad-${index}`).addEventListener('input', actualizarTotal);
             });
 
-            totalInput.value = total.toFixed(2);
+            actualizarTotal();
 
-            const metodoPago = document.getElementById('metodo-pago');
-            const datosTarjeta = document.getElementById('datos-tarjeta');
-            const datosTransferencia = document.getElementById('datos-transferencia');
-            const mensajeEfectivo = document.getElementById('mensaje-efectivo');
-
-            metodoPago.addEventListener('change', function() {
-                datosTarjeta.classList.add('oculto');
-                datosTransferencia.classList.add('oculto');
-                mensajeEfectivo.classList.add('oculto');
-
-                if (this.value === 'tarjeta') {
-                    datosTarjeta.classList.remove('oculto');
-                } else if (this.value === 'transferencia') {
-                    datosTransferencia.classList.remove('oculto');
-                } else if (this.value === 'efectivo') {
-                    mensajeEfectivo.classList.remove('oculto');
-                }
-            });
-
-            const modal = document.getElementById('modal-confirmacion');
             document.getElementById('pedido-form').addEventListener('submit', function(event) {
                 event.preventDefault();
-                modal.style.display = 'flex';
-
-                modal.querySelector('.cerrar').addEventListener('click', () => modal.style.display = 'none');
-                window.addEventListener('click', event => {
-                    if (event.target === modal) modal.style.display = 'none';
-                });
+                alert('Pedido enviado exitosamente.');
             });
         });
     </script>
 </body>
 </html>
+
+    
+     
+
+
+ 
+       
+     
