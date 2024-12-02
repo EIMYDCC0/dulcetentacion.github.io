@@ -27,15 +27,37 @@
         .producto {
             border: 1px solid #ddd;
             border-radius: 5px;
-            padding: 10px;
+            padding: 20px;
             background-color: white;
-            margin: 10px;
+            margin: 10px 0;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .producto h4 {
+            text-align: center;
+            color: #8B0000;
+        }
+        .datos-nutricionales {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            padding: 0;
+            list-style: none;
+        }
+        .datos-nutricionales li {
+            width: 48%; /* Para que dos elementos aparezcan en línea */
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+        @media (max-width: 600px) {
+            .datos-nutricionales li {
+                width: 100%; /* En pantallas pequeñas, cada elemento ocupa toda la línea */
+            }
         }
         footer {
             text-align: center;
             margin-top: 20px;
-            color: #777;
+            color: #fff;
             background-color: #8B0000; 
             padding: 10px;
             border-radius: 5px;
@@ -50,25 +72,25 @@
     <section>
         <div class="producto">
             <h4>Ponche Dulce de Leche (700 ML)</h4>
-            <ul>
-                <li>Calorías: 250 por porción (100ml)</li>
-                <li>Grasas: 10g</li>
-                <li>Carbohidratos: 35g</li>
-                <li>Proteínas: 5g</li>
-                <li>Azúcares: 30g</li>
-                <li>Sodio: 150mg</li>
+            <ul class="datos-nutricionales">
+                <li><strong>Calorías:</strong> 250 por porción (100ml)</li>
+                <li><strong>Grasas:</strong> 10g</li>
+                <li><strong>Carbohidratos:</strong> 35g</li>
+                <li><strong>Proteínas:</strong> 5g</li>
+                <li><strong>Azúcares:</strong> 30g</li>
+                <li><strong>Sodio:</strong> 150mg</li>
             </ul>
         </div>
 
         <div class="producto">
             <h4>Ponche Dulce de Leche (4 oz)</h4>
-            <ul>
-                <li>Calorías: 100 por porción (4 oz)</li>
-                <li>Grasas: 4g</li>
-                <li>Carbohidratos: 14g</li>
-                <li>Proteínas: 2g</li>
-                <li>Azúcares: 12g</li>
-                <li>Sodio: 60mg</li>
+            <ul class="datos-nutricionales">
+                <li><strong>Calorías:</strong> 100 por porción (4 oz)</li>
+                <li><strong>Grasas:</strong> 4g</li>
+                <li><strong>Carbohidratos:</strong> 14g</li>
+                <li><strong>Proteínas:</strong> 2g</li>
+                <li><strong>Azúcares:</strong> 12g</li>
+                <li><strong>Sodio:</strong> 60mg</li>
             </ul>
         </div>
     </section>
