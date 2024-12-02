@@ -136,66 +136,57 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const productosJson = urlParams.get('productos');
-            let productosSeleccionados = productosJson ? JSON.parse(decodeURIComponent(productosJson)) : [];
+    document.addEventListener('DOMContentLoaded', function () {
+        // Obtener los parámetros de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const producto = urlParams.get('producto'); // Recoge el producto
+        const precio = parseFloat(urlParams.get('precio')); // Recoge el precio como número
 
-            const listaProductos = document.getElementById('lista-productos');
-            const totalInput = document.getElementById('total');
+        const listaProductos = document.getElementById('lista-productos');
+        const totalInput = document.getElementById('total');
 
-            function actualizarTotal() {
-                let total = 0;
-                productosSeleccionados.forEach((item, index) => {
-                    const cantidad = document.getElementById(`cantidad-${index}`).value;
-                    const subtotal = cantidad * item.precio;
-                    document.getElementById(`subtotal-${index}`).textContent = `Subtotal: $${subtotal.toFixed(2)}`;
-                    total += subtotal;
-                });
-                totalInput.value = total.toFixed(2);
+        if (producto && precio) {
+            // Mostrar el producto en la lista
+            listaProductos.innerHTML = `
+                <div class="producto-item">
+                    <p><strong>${producto}</strong></p>
+                    <p>Precio: $${precio.toFixed(2)}</p>
+                </div>
+            `;
+
+            // Actualizar el campo del total
+            totalInput.value = precio.toFixed(2);
+        } else {
+            // Si no hay datos, mostrar mensaje
+            listaProductos.innerHTML = '<p>No se ha seleccionado ningún producto.</p>';
+            totalInput.value = '0.00';
+        }
+
+        // Mostrar/ocultar campos según el método de pago
+        const metodoPago = document.getElementById('metodo-pago');
+        const datosTarjeta = document.getElementById('datos-tarjeta');
+        const datosTransferencia = document.getElementById('datos-transferencia');
+        const mensajeEfectivo = document.getElementById('mensaje-efectivo');
+
+        metodoPago.addEventListener('change', function () {
+            datosTarjeta.classList.add('oculto');
+            datosTransferencia.classList.add('oculto');
+            mensajeEfectivo.classList.add('oculto');
+
+            if (this.value === 'tarjeta') {
+                datosTarjeta.classList.remove('oculto');
+            } else if (this.value === 'transferencia') {
+                datosTransferencia.classList.remove('oculto');
+            } else if (this.value === 'efectivo') {
+                mensajeEfectivo.classList.remove('oculto');
             }
-
-            productosSeleccionados.forEach((item, index) => {
-                const productoInfo = document.createElement('div');
-                productoInfo.classList.add('producto-item');
-                productoInfo.innerHTML = `
-                    <p><strong>${item.producto}</strong></p>
-                    <p>Precio unitario: $${item.precio}</p>
-                    <label for="cantidad-${index}">Cantidad:</label>
-                    <input type="number" id="cantidad-${index}" name="cantidad-${index}" value="${item.cantidad}" min="0">
-                    <p id="subtotal-${index}">Subtotal: $${(item.precio * item.cantidad).toFixed(2)}</p>
-                `;
-                listaProductos.appendChild(productoInfo);
-
-                document.getElementById(`cantidad-${index}`).addEventListener('input', actualizarTotal);
-            });
-
-            actualizarTotal();
-
-            const metodoPago = document.getElementById('metodo-pago');
-            const datosTarjeta = document.getElementById('datos-tarjeta');
-            const datosTransferencia = document.getElementById('datos-transferencia');
-            const mensajeEfectivo = document.getElementById('mensaje-efectivo');
-
-            metodoPago.addEventListener('change', function() {
-                datosTarjeta.classList.add('oculto');
-                datosTransferencia.classList.add('oculto');
-                mensajeEfectivo.classList.add('oculto');
-
-                if (this.value === 'tarjeta') {
-                    datosTarjeta.classList.remove('oculto');
-                } else if (this.value === 'transferencia') {
-                    datosTransferencia.classList.remove('oculto');
-                } else if (this.value === 'efectivo') {
-                    mensajeEfectivo.classList.remove('oculto');
-                }
-            });
-
-            document.getElementById('pedido-form').addEventListener('submit', function(event) {
-                event.preventDefault();
-                alert('Pedido enviado exitosamente.');
-            });
         });
-    </script>
-</body>
-</html>
+
+        // Mostrar un mensaje de confirmación al enviar el formulario
+        const formulario = document.getElementById('pedido-form');
+        formulario.addEventListener('submit', function (event) {
+            event.preventDefault();
+            alert('Pedido enviado exitosamente.');
+        });
+    });
+</script>
