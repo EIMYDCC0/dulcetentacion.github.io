@@ -135,7 +135,7 @@
         <p>&copy; 2024 Dulce Tradición. Todos los derechos reservados.</p>
     </footer>
 
-    <script>
+   <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Obtener los parámetros de la URL
         const urlParams = new URLSearchParams(window.location.search);
@@ -182,11 +182,19 @@
             }
         });
 
-        // Mostrar un mensaje de confirmación al enviar el formulario
+        // Mostrar un mensaje de confirmación al enviar el formulario y redirigir a la pantalla de inicio
         const formulario = document.getElementById('pedido-form');
         formulario.addEventListener('submit', function (event) {
-            event.preventDefault();
+            event.preventDefault(); // Evita el envío normal del formulario
+
+            // Muestra un mensaje y redirige después de cerrarlo
             alert('Pedido enviado exitosamente.');
+            location.href = 'index.html'; // Cambia 'index.html' por la URL de la pantalla de inicio
+        });
+    });
+</script>
+
+     
         });
     });
 </script>
