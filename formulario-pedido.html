@@ -95,6 +95,38 @@
             <label for="telefono">Teléfono</label>
             <input type="tel" id="telefono" name="telefono" required>
 
+            <label for="metodo-pago">Método de Pago</label>
+            <select id="metodo-pago" name="metodo-pago" required>
+                <option value="">Seleccione...</option>
+                <option value="tarjeta">Tarjeta</option>
+                <option value="efectivo">Efectivo</option>
+                <option value="transferencia">Transferencia</option>
+            </select>
+
+            <p id="mensaje-efectivo" class="mensaje oculto">Pagará a la hora de recibir el pedido.</p>
+
+            <div id="datos-tarjeta" class="oculto">
+                <label for="num-tarjeta">Número de Tarjeta</label>
+                <input type="text" id="num-tarjeta" name="num-tarjeta">
+
+                <label for="fecha-exp">Fecha de Expiración (MM/AA)</label>
+                <input type="text" id="fecha-exp" name="fecha-exp">
+
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv">
+            </div>
+
+            <div id="datos-transferencia" class="oculto">
+                <p><strong>Datos para Transferencia Bancaria:</strong><br>
+                Titular: Dulce Tradición<br>
+                Banco: Banco Popular<br>
+                Cuenta de Ahorros No.: 775098123<br>
+                Cédula: 402-1322456-7</p>
+
+                <label for="num-transaccion">Número de Transacción</label>
+                <input type="text" id="num-transaccion" name="num-transaccion">
+            </div>
+
             <button type="submit">Enviar Pedido</button>
         </form>
     </section>
@@ -140,6 +172,25 @@
 
             actualizarTotal();
 
+            const metodoPago = document.getElementById('metodo-pago');
+            const datosTarjeta = document.getElementById('datos-tarjeta');
+            const datosTransferencia = document.getElementById('datos-transferencia');
+            const mensajeEfectivo = document.getElementById('mensaje-efectivo');
+
+            metodoPago.addEventListener('change', function() {
+                datosTarjeta.classList.add('oculto');
+                datosTransferencia.classList.add('oculto');
+                mensajeEfectivo.classList.add('oculto');
+
+                if (this.value === 'tarjeta') {
+                    datosTarjeta.classList.remove('oculto');
+                } else if (this.value === 'transferencia') {
+                    datosTransferencia.classList.remove('oculto');
+                } else if (this.value === 'efectivo') {
+                    mensajeEfectivo.classList.remove('oculto');
+                }
+            });
+
             document.getElementById('pedido-form').addEventListener('submit', function(event) {
                 event.preventDefault();
                 alert('Pedido enviado exitosamente.');
@@ -148,11 +199,3 @@
     </script>
 </body>
 </html>
-
-    
-     
-
-
- 
-       
-     
