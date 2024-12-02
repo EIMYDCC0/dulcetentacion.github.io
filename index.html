@@ -200,9 +200,20 @@
     </footer>
 
    <script>
-    function realizarPedido() {
-        const cantidad1 = parseInt(document.getElementById('cantidad1').value) || 0;
-        const cantidad2 = parseInt(document.getElementById('cantidad2').value) || 0;
+       function realizarPedido() {
+    const cantidad1 = parseInt(document.getElementById('cantidad1').value) || 0;
+
+    if (cantidad1 > 0) {
+        const productosSeleccionados = [{
+            producto: 'Ponche Dulce de Leche (700 ML)',
+            cantidad: cantidad1,
+            precio: 900
+        }];
+        const productosJson = encodeURIComponent(JSON.stringify(productosSeleccionados));
+        window.location.href = `formulario-pedido2.html?productos=${productosJson}`;
+    } else {
+        alert('Por favor, seleccione al menos una cantidad antes de realizar el pedido.');
+    }
 
         let productosSeleccionados = [];
 
