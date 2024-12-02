@@ -135,6 +135,19 @@
 
             <button type="submit">Enviar Pedido</button>
         </form>
+         <script>
+        function procesarFormulario(event) {
+            event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+            // Muestra el mensaje de confirmación
+            alert('Tu pedido ha sido recibido. Un representante se comunicará contigo en 24 horas.');
+
+            // Redirige a la página principal
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
     </section>
 
     <footer>
