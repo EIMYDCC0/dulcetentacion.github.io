@@ -177,7 +177,7 @@
             <img src="botellaconlazo700.jpeg" alt="Ponche Dulce de Leche">
             <h4>Ponche Dulce de Leche (700 ML)</h4>
             <p>Un exquisito ponche con el sabor cremoso del dulce de leche, ideal para disfrutar en cualquier ocasión.</p>
-            <p><strong>Precio:</strong> $900.00</p>
+            <p><strong>Precio:</strong> $950.00</p>
             <label for="cantidad1">Cantidad:</label>
             <input type="number" id="cantidad1" name="cantidad1" value="0" min="0">
         </div>
@@ -207,7 +207,7 @@
         const productosSeleccionados = [{
             producto: 'Ponche Dulce de Leche (700 ML)',
             cantidad: cantidad1,
-            precio: 900
+            precio: 950
         }];
         const productosJson = encodeURIComponent(JSON.stringify(productosSeleccionados));
         window.location.href = `formulario-pedido2.html?productos=${productosJson}`;
@@ -221,7 +221,7 @@
             productosSeleccionados.push({
                 producto: 'Ponche Dulce de Leche (700 ML)',
                 cantidad: cantidad1,
-                precio: 900
+                precio: 950
             });
         }
         if (cantidad2 > 0) {
